@@ -1,6 +1,21 @@
 \documentclass[aspectratio=169]{beamer}
 
+\usepackage{caption}
 \usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{xmpmulti}
+
+\graphicspath{{./images/}}
+\makeatletter
+\def\input@path{{./}{./images}}
+\makeatother
+
+\newcommand\imageright[1]{ %
+    \caption*{\scalebox{.5}{\textcolor{lightgray}{\textcopyright~#1}}} %
+}
 
 \usetheme{HGF}
 
@@ -11,6 +26,9 @@
 \institute{KIT}
 
 \begin{document}
+    
+\section{Introduction}
+\label{sec:introduction}
 
 \maketitle
 
@@ -21,18 +39,60 @@
 \end{frame}
 
 \section{Machine Learning Fundamentals}
+\label{sec:machine-learning}
 
 \subsection{Terminology}
+\label{subsec:terminology}
+
+\begin{frame}
+    \frametitle{Terminology}
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[fill=white, font=\footnotesize]
+            \draw (0, 0) ellipse (7.0 and 3.5);
+            \node[align=left] at (5.6, 0.0) {AI\\e.g. rules};
+            
+            \draw (-1.0, 0) ellipse (5.5 and 3.0) (-0.8, 2.0) node {Machine Learning};
+            
+            \draw (-1.4, 0) ellipse (4.5 and 2.5) (-1.4, 1.0) node {Deep Learning};
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Terminology}
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            \begin{itemize}
+                \item \textbf{Samples}
+                \item \textbf{Attributes}
+                \item \textbf{Channels}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{figure}
+                \includegraphics{terminology.png}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Terminology}
+    \begin{itemize}
+        \item \textbf{Supervised learning}
+        \item \textbf{Unsupervised learning}
+        \item \textbf{Reinforcement learning}
+    \end{itemize}
+\end{frame}
+
+
 \subsection{Frameworks}
 \subsection{Exercise: MNIST Dataset}
 \subsection{Classification}
 \subsection{Logistic Regression}
 \subsection{Exercise: Logistic Regression}
-
-\begin{frame}
-    \frametitle{Logistic Regression}
-    \framesubtitle{The Paranoid Android}
-\end{frame}
 
 \section{Neural Networks}
 
@@ -40,31 +100,27 @@
 \subsection{Generalization}
 \subsection{Exercise: MNIST FNN}
 
-\begin{frame}
-\frametitle{Logistic Regression}
-\framesubtitle{The Paranoid Android}
-\end{frame}
-
 \section{Convolutional Neural Networks}
 
-\subsection{Discrete Convolutions}
-\subsection{Network Architecture}
-\subsection{Exercise: MNIST CNN}
+\subsection{Discrete Convolution}
+\label{subsec:discrete-convolution}
 
 \begin{frame}
-\frametitle{Logistic Regression}
-\framesubtitle{The Paranoid Android}
+    \frametitle{Discrete Convolution}
+    \begin{figure}
+        \centering
+        \multiinclude[<+->][format=png, graphics={width=0.8\linewidth}]{convolution}
+        \imageright{Machine Learning Guru}
+    \end{figure}
 \end{frame}
+
+\subsection{Network Architecture}
+\subsection{Exercise: MNIST CNN}
 
 \section{Regression}
 
 \subsection{Discrete Convolutions}
 \subsection{Network Architecture}
 \subsection{Exercise: Abalone}
-
-\begin{frame}
-\frametitle{Logistic Regression}
-\framesubtitle{The Paranoid Android}
-\end{frame}
 
 \end{document}
