@@ -9,7 +9,7 @@
 #
 # Creation Date : Wed 22 Aug 2018 04:08:18 PM CEST
 #
-# Last Modified : Wed 22 Aug 2018 04:20:42 PM CEST
+# Last Modified : Wed 22 Aug 2018 04:28:05 PM CEST
 #
 #####################################
 
@@ -29,7 +29,7 @@ modules = [
 for user in users:
     home = "/gpfs/homea/padcedu/" + user
     os.chdir(home)
-    sp.call(['git', 'clone', 'git://github.com/marks-goetz/gridka-2018.git'])
+    sp.call(['git', 'clone', 'git://github.com/markus-goetz/gridka-2018.git'])
 
     with open('jupyter_modules.sh', 'w') as f:
         f.write("#!/usr/bin/env bash")
