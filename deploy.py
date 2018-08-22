@@ -9,12 +9,13 @@
 #
 # Creation Date : Wed 22 Aug 2018 04:08:18 PM CEST
 #
-# Last Modified : Wed 22 Aug 2018 04:28:05 PM CEST
+# Last Modified : Wed 22 Aug 2018 04:52:27 PM CEST
 #
 #####################################
 
 
 import os
+import pwd
 import subprocess as sp
 
 
@@ -28,10 +29,14 @@ modules = [
 
 for user in users:
     home = "/gpfs/homea/padcedu/" + user
-    os.chdir(home)
+    pwnam = pwd.getpwnam(user)
+    os.chdir(pwnam.pw_dir)
     sp.call(['git', 'clone', 'git://github.com/markus-goetz/gridka-2018.git'])
+    os.chown('gridka-2018', pwnam.pw_uid, pwnam.pw_gid)
 
-    with open('jupyter_modules.sh', 'w') as f:
+    modulescript = '.jupyter_modules.sh'
+    with open(modulescript, 'w') as f:
         f.write("#!/usr/bin/env bash")
         for m in modules:
             f.write("module load " + m)
+    os.chown(modulescript, pwnam.pw_uid, pwnam.pw_gid)
