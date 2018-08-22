@@ -1,0 +1,107 @@
+\RequirePackage{ifluatex,ifxetex,ifpdf}
+\RequirePackage{etoolbox}
+\RequirePackage{tikz}
+\RequirePackage{calc}
+\RequirePackage{textcase}
+\usetikzlibrary{calc}
+
+\ifluatex
+  \RequirePackage{microtype}
+  \RequirePackage[no-math]{fontspec}
+  \setmainfont{LiberationSans}
+  \setsansfont{LiberationSans}
+  \setmonofont{LiberationMono}
+\else\ifxetex
+  \RequirePackage{fontspec}
+  \setmainfont{LiberationSans}
+  \setsansfont{LiberationSans}
+  \setmonofont{LiberationMono}
+\else
+  \RequirePackage{helvet}
+  \RequirePackage{microtype}
+\fi\fi
+
+\newcommand{\hgfset}[1]{\pgfkeys{/beamerhgf/.cd,#1}}
+
+\pgfkeys{/beamerhgf/.cd,
+  .search also={
+    /beamerhgf/inner,
+    /beamerhgf/outer,
+    /beamerhgf/color,
+    /beamerhgf/font,
+  }
+}
+
+\mode<presentation>
+
+\deftranslation[]{SlideName}{Slide}
+\deftranslation[to=German]{SlideName}{Folie}
+
+\deftranslation[]{Spitzenforschung}{Research for Grand Challenges}
+\deftranslation[to=German]{Spitzenforschung}{Spitzenforschung für große Herausforderungen}
+
+\usefonttheme{HGF}
+\usecolortheme{HGF}
+\useinnertheme{HGF}
+\useoutertheme{HGF}
+
+\hgfset{
+  title=regular,
+  subtitle=regular,
+  part=regular,
+  frametitle=regular,
+}
+
+\deftranslation[]{HelmholtzBanner}{images/hgf_research_f_grand_challenges.png}
+\deftranslation[to=German]{HelmholtzBanner}{images/hgf_spitzenforschung.png}
+
+\mode<handout>{%
+	\usepackage{pgf}
+	\usepackage{pgfpages}
+	\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+	\pgfpageslogicalpageoptions{1}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{2}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{3}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{4}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{5}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{6}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{7}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{8}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{9}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{10}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{11}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{12}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{13}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{14}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{15}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+	\pgfpageslogicalpageoptions{16}{border code=\pgfsetlinewidth{0.4pt}\pgfstroke}
+}
+
+\mode<presentation>
+
+\makeatletter
+\def\progressbar@progressbar{}
+\newcount\progressbar@tmpcounta
+\newcount\progressbar@tmpcountb
+\newdimen\progressbar@pbht
+\newdimen\progressbar@pbwd
+\newdimen\progressbar@tmpdim
+
+\progressbar@pbwd=\paperwidth
+\progressbar@pbht=0.2ex
+
+\def\progressbar@progressbar{%
+  \progressbar@tmpcounta=\insertframenumber
+  \progressbar@tmpcountb=\inserttotalframenumber
+  \progressbar@tmpdim=\progressbar@pgwd
+  \divide\progressbar@tmpdim by 128
+  \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+  \divide\progressbar@tmpdim by \progressbar@tmpcountb
+  \multiply\progressbar@tmpdim by 128
+  \begin{tikzpicture}
+    \draw[draw=none,fill=hgfblue] %
+    (0pt, 0pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+  \end{tikzpicture}
+}
+\makeatother

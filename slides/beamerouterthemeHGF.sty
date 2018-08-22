@@ -1,0 +1,141 @@
+%\RequirePackage{graphicx}
+
+\setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+
+% background canvas
+\defbeamertemplate{background canvas}{title}{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{images/key_technologies.jpg}
+}
+\defbeamertemplate{background canvas}{empty}{}
+
+\pgfkeys{/beamerhgf/outer/.cd,
+  background canvas/.initial=empty
+}
+
+% HGF slider
+\usetikzlibrary{turtle}
+% \newcommand{\topslider}[1]{%
+%   \begin{tikzpicture}[overlay,remember picture,turtle/distance=1ex]
+%     \draw [fill=hgfgreen,draw=none,rounded corners=2pt] (current page.north east) ++ (1ex, 1ex) [turtle={left=180,forward=4ex,right=90,forward=.3\textwidth,forward=.1\textwidth,right=45,forward=3ex,home}];
+%     \draw [fill=hgfblue,draw=none,rounded corners=2pt] (current page.north east) ++ (1ex, 1ex) [turtle={left=180,forward=5ex,right=90,forward=.3\textwidth,right=45,forward=3ex,left=45,forward=.8\textwidth,right=90,forward=3ex,home}];
+%     \node at (current page.north east) [color=white,anchor=north east,inner xsep=0.5ex,inner ysep=2ex,font=\tiny] { #1 };
+%   \end{tikzpicture}
+% }
+
+    % (current page.north east) --
+    % (current page.north west) --
+    % (current page.north west) ++ (0, -.3\paperheight) --
+    % (current page.north west) ++ (.3\paperwidth, -.3\paperheight) --
+    % (current page.north west) ++ (.35\paperwidth, -.25\paperheight) --
+    % (current page.north east) ++ (0, -.25\paperheight) --
+    % (current page.north east);
+
+\newcommand{\topslider}{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw [fill=white,draw=none,rounded corners=2pt] (current page.north east)
+    [turtle={lt,forward=1.1\paperwidth,lt,forward=.19\paperheight,lt,forward=.47\paperwidth,left=45,forward=1.5ex,right=45,forward=.63\paperwidth,home}];
+  \end{tikzpicture}
+}
+
+\newcommand{\bottomslider}[1]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw [fill=#1,draw=none,rounded corners=2pt] (current page.south east)
+    [turtle={lt,fd=1.1\paperwidth,rt,fd=0.025\paperheight,rt,fd=.8375\paperwidth,lt=45,fd=1.5ex,rt=45,fd=.25\paperwidth,home}];
+  \end{tikzpicture}
+}
+% \newcommand{\bottomslider}[1]{%
+%   \begin{tikzpicture}[overlay,remember picture]
+%     \draw [fill=red,draw=none] (current page.south east)
+%     -- (current page.south east) ++ (0, .05\paperheight)
+%     [rounded corners=2pt] -- (current page.south east) ++ (-.25\paperwidth, .05\paperheight)
+%     -- (current page.south east) ++ (-.28\paperwidth, .5\paperheight-0.3\paperwidth)
+%     [sharp corners] -- (current page.south west) ++ (0, .5\paperheight-0.3\paperwidth)
+%     -- (current page.south west);
+%   \end{tikzpicture}
+% }
+
+\newcommand{\fbslider}[1]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw [fill=#1,draw=none,rounded corners=2pt] (current page.south east) ++ (-.25\paperwidth, .042\paperheight)
+    [turtle={lt,fd=.13\paperwidth,lt=45,fd=1.5ex,lt=135,fd=.13\paperwidth,home}];
+  \end{tikzpicture}
+}
+
+\newcommand{\leftslider}[1]{%
+\begin{tikzpicture}[overlay,remember picture]
+    \draw [fill=#1,draw=none,rounded corners=2pt] (current page.south west)
+    [turtle={fd=.05\paperheight,rt,fd=.15\paperwidth,rt=45,fd=3.5ex,rt=135,fd=.15\paperwidth,home}];
+  \end{tikzpicture}
+}
+
+\newcommand{\banner}{%
+}
+
+\defbeamertemplate{background}{title}{%
+  \topslider
+  \banner
+  \fbslider{hgfkeytechnologies}
+  \bottomslider{white}
+  \leftslider{hgfdarkblue}
+}
+\defbeamertemplate{background}{frame}{%
+  \fbslider{hgfkeytechnologies}
+  \bottomslider{hgfblue}
+}
+
+\setbeamertemplate{background}[frame]
+
+% headline
+\defbeamertemplate{headline}{empty}{}
+
+\pgfkeys{/beamerhgf/outer/.cd,
+  footline/.initial=empty
+}
+
+% footline
+\setbeamertemplate{footline}{\vspace{-4pt}\hspace{0.3cm}\usebeamercolor[fg]{title}\inserttitle\enspace\vrule width0.3pt\enspace\insertauthor}
+
+% navigation bar
+\setbeamertemplate{navigation symbols}{\usebeamercolor[fg]{title}\insertframenumber}
+
+% title page
+\defbeamertemplate{title page}{text}{%
+  \vskip -0cm%
+  \hspace{0.3cm}\usebeamercolor[hgfblue]{title}\usebeamerfont*{title}\strut{}\inserttitle\par%
+  \hspace{0.3cm}\usebeamercolor[hgfblue]{subtitle}\usebeamerfont{subtitle}\strut{}\insertsubtitle\par%
+  \vspace{-0.1cm}\hspace{0.3cm}\usebeamercolor[hgfblue]{title}\usebeamerfont*{date}\insertdate\enspace\vrule width0.3pt\enspace\insertauthor\enspace\vrule width0.3pt\enspace\insertinstitute%
+}
+
+\setbeamertemplate{title page}[text]
+
+\pgfkeys{/beamerhgf/outer/.cd,
+  title page/.initial=text
+}
+
+\setbeamertemplate{section in toc}{
+    \inserttocsectionnumber.~\inserttocsection
+}
+
+
+%------------------------------------------------
+% title slide definition via maketitle
+%------------------------------------------------
+\def\maketitle{%
+{%
+    
+  \setbeamertemplate{footline}{} 
+  \ifbeamer@inframe%
+    \titlepage%
+    % resetting the background does not work for inframe, since empty title theme template cannot be set after \frame{...} here
+  \else%
+    \setbeamertemplate{frame number}[invisible]%
+    \setbeamertemplate{date}[invisible]%
+    \setbeamertemplate{background canvas}[title]%
+    \setbeamertemplate{background}[title]%
+    \setbeamertemplate{title page}[title]%
+    \frame[t,noframenumbering]{\titlepage}%
+\fi%
+}%
+    % reset background to normal slides, does not change selected theme
+    \setbeamertemplate{background canvas}[empty]
+}

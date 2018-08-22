@@ -1,0 +1,236 @@
+% Latex-Beamer Template Research Centre Juelich
+% version 17.12
+% please report any problems to i.kabadshow@fz-juelich.de
+% this version does support pdflatex, xelatex and lualatex
+%
+
+\mode<presentation>
+
+\setbeamerfont{subtitle short}{size*={11pt}{12pt},series=\mdseries}  % 30pt, baselineskip 36pt
+\setbeamerfont{subtitle long}{size*={9pt}{9pt},series=\mdseries}  % 18pt, baselineskip 22pt
+\setbeamerfont*{subtitle}{parent=subtitle long} % reset font (*) and use parent font size
+
+% deault subline style to short UPPERCASE s p a c e d text
+\setbeamerfont*{subtitle}{parent=subtitle short}
+
+%\setbeamerfont{normal text}{size*={8pt}{9pt}} % 14pt, baselineskip 18pt
+\setbeamerfont{footline}{size*={4.5pt}{5pt}}
+
+%\setbeamerfont{frametitle}{size*={16pt}{16pt},series=\bfseries} %30pt, baselineskip 36pt
+\setbeamerfont{framesubtitle}{size*={9pt}{11pt},series=\mdseries} % 18pt, baselineskip 22pt
+
+% Default Definitions
+\setbeamerfont{alerted text}{}
+\setbeamerfont{example text}{}
+
+\setbeamerfont{structure}{}
+\setbeamerfont{tiny structure}{size=\tiny}
+
+\setbeamerfont{title in head/foot}{}
+\setbeamerfont{title in sidebar}{size=\tiny}
+
+\setbeamerfont{author}{}
+\setbeamerfont{author in head/foot}{}
+\setbeamerfont{author in sidebar}{size=\tiny}
+
+\setbeamerfont{institute}{size=\scriptsize}
+\setbeamerfont{institute in head/foot}{}
+\setbeamerfont{institute in sidebar}{}
+
+\setbeamerfont{date}{size*={8pt}{8pt}}
+\setbeamerfont{date in head/foot}{parent=footline}
+\setbeamerfont{date in sidebar}{}
+
+\setbeamerfont{part name}{size=\Large}
+\setbeamerfont{part title}{parent=title}
+
+\setbeamerfont{section in toc}{parent=structure}
+\setbeamerfont{section in toc shaded}{parent=section in toc}
+\setbeamerfont{section in head/foot}{}
+\setbeamerfont{section in sidebar}{size=\tiny}
+\setbeamerfont{section number projected}{size=\small,parent={section in toc,projected text}}
+
+\setbeamerfont{subsection in toc}{}
+\setbeamerfont{subsection in toc shaded}{parent=subsection in toc}
+\setbeamerfont{subsection in head/foot}{}
+\setbeamerfont{subsection in sidebar}{}
+
+\setbeamerfont{subsubsection in toc}{size=\footnotesize}
+\setbeamerfont{subsubsection in toc shaded}{parent=subsubsection in toc}
+\setbeamerfont{subsubsection in head/foot}{}
+\setbeamerfont{subsubsection in sidebar}{}
+
+\setbeamerfont{headline}{parent={tiny structure}}
+\setbeamerfont{footline}{parent={tiny structure}}
+
+\setbeamerfont{sidebar}{size=\Tiny,parent={tiny structure}}
+\setbeamerfont{sidebar left}{parent=sidebar}
+\setbeamerfont{sidebar right}{parent=sidebar}
+
+\setbeamerfont{caption}{size=\small}
+\setbeamerfont{caption name}{parent={structure,caption}}
+
+\setbeamerfont{button}{size=\tiny}
+
+\setbeamerfont{block body}{}
+\setbeamerfont{block body alerted}{}
+\setbeamerfont{block body example}{}
+\setbeamerfont{block title}{size=\large,parent={structure,block body}}
+\setbeamerfont{block title alerted}{parent={block title,alerted text}}
+\setbeamerfont{block title example}{parent={block title,example text}}
+
+\setbeamerfont{item}{parent=structure}
+\setbeamerfont{subitem}{parent=item}
+\setbeamerfont{subsubitem}{parent=subitem}
+
+\setbeamerfont{item projected}{size=\tiny,parent={item,projected text}}
+\setbeamerfont{subitem projected}{parent=item projected}
+\setbeamerfont{subsubitem projected}{parent=subitem projected}
+
+\setbeamerfont{itemize item}{parent=item}
+\setbeamerfont{itemize subitem}{parent=subitem}
+\setbeamerfont{itemize subsubitem}{parent=subsubitem}
+
+\setbeamerfont{enumerate item}{parent=item}
+\setbeamerfont{enumerate subitem}{parent=subitem}
+\setbeamerfont{enumerate subsubitem}{parent=subsubitem}
+
+\setbeamerfont{itemize/enumerate body}{}
+\setbeamerfont{itemize/enumerate subbody}{size=\small}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\footnotesize}
+
+\setbeamerfont{description item}{parent=item}
+
+\setbeamerfont{projected text}{parent={tiny structure}}
+
+\setbeamerfont{abstract}{size=\small}
+\setbeamerfont{abstract title}{parent={abstract,structure},size=\normalsize}
+
+\setbeamerfont{verse}{family=\rmfamily,shape=\itshape}
+
+\setbeamerfont{quotation}{shape=\itshape}
+\setbeamerfont{quote}{parent=quotation}
+
+\setbeamerfont{note page}{size=\small}
+
+\makeatletter
+
+\pgfkeys{
+  /beamerhgf/font/title/.cd,
+    .is choice,
+    .default=regular,
+    regular/.code={%
+      \let\beamerhgf@titleformatcaps\emptydummya%
+      \let\beamerhgf@titleformatspacinga\emptydummya%
+      \let\beamerhgf@titleformatspacingb\emptydummyb%
+      \setbeamerfont{title}{size*={14pt}{15pt},series=\bfseries} % 32pt, baselineskip 36pt%
+    },
+    allcaps/.code={%
+      \let\beamerhgf@titleformatcaps\MakeTextUppercase%
+      \let\beamerhgf@titleformatspacinga\emptydummya%
+      \let\beamerhgf@titleformatspacingb\emptydummyb%
+      \setbeamerfont{title}{size*={14pt}{15pt},series=\bfseries} % 32pt, baselineskip 36pt%
+    },
+}
+
+\pgfkeys{
+  /beamerhgf/font/subtitle/.cd,
+    .is choice,
+    .default=allcaps,
+    regular/.code={%
+      \let\beamerhgf@subtitleformatcaps\emptydummya%
+      \let\beamerhgf@subtitleformatspacinga\emptydummya%
+      \let\beamerhgf@subtitleformatspacingb\emptydummyb%
+      \setbeamerfont{subtitle long}{size*={9pt}{11pt},series=\bfseries}  % 18pt, baselineskip 22pt
+    },
+    allcaps/.code={%
+      \let\beamerhgf@subtitleformatcaps\MakeTextUppercase%
+      \let\beamerhgf@subtitleformatspacinga\emptydummya%
+      \let\beamerhgf@subtitleformatspacingb\emptydummyb%
+      \setbeamerfont{title}{size*={16pt}{16pt},series=\bfseries} % 30pt, baselineskip 36pt%
+    },
+}
+
+\pgfkeys{
+  /beamerhgf/font/part/.cd,
+    .is choice,
+    .default=allcaps,
+    regular/.code={%
+      \let\beamerhgf@partformatcaps\emptydummya%
+      \let\beamerhgf@partformatspacinga\emptydummya%
+      \let\beamerhgf@partformatspacingb\emptydummyb%
+      \setbeamerfont{part}{size*={16pt}{18pt},series=\bfseries} % 30pt, baselineskip 36pt%
+    },
+    allcaps/.code={%
+      \let\beamerhgf@partformatcaps\MakeTextUppercase%
+      \let\beamerhgf@partformatspacinga\emptydummya%
+      \let\beamerhgf@partformatspacingb\emptydummyb%
+      \setbeamerfont{part}{size*={16pt}{18pt},series=\bfseries} % 30pt, baselineskip 36pt%
+    },
+}
+
+\pgfkeys{
+  /beamerhgf/font/frametitle/.cd,
+    .is choice,
+    .default=allcaps,
+    regular/.code={%
+      \let\beamerhgf@frametitleformatcaps\emptydummya%
+      \let\beamerhgf@frametitleformatspacinga\emptydummya%
+      \let\beamerhgf@frametitleformatspacingb\emptydummyb%
+      \setbeamerfont{frametitle}{size*={14pt}{18pt},series=\bfseries} % 32pt, baselineskip 36pt%
+    },
+    allcaps/.code={%
+      \let\beamerhgf@frametitleformatcaps\MakeTextUppercase%
+      \let\beamerhgf@frametitleformatspacinga\emptydummya%
+      \let\beamerhgf@frametitleformatspacingb\emptydummyb%
+      \setbeamerfont{frametitle}{size*={14pt}{18pt},series=\bfseries} % 32pt, baselineskip 36pt%
+    },
+}
+
+
+% define options for letter spacing
+\providecommand{\emptydummyb}[1]{} % eats argument of \uppercase() and and \addfontfeature{}
+\providecommand{\emptydummya}[2][]{#2}{} % eats optional argument of textls and forwards #2 argument
+\providecommand{\addfontfeature}[1]{} % defined only if latex or pdflatex is used, available in xelatex and lualatex
+\providecommand{\textls}[2][]{#2}{} % defined only if microtype is loaded
+
+% redefine beamer title, subtitle, part and frametitle command
+\def\beamerhgf@titleformat#1{#1}
+\def\beamerhgf@subtitleformat#1{#1}
+\def\beamerhgf@partformat#1{#1}
+\def\beamerhgf@frametitleformat#1{#1}
+\patchcmd{\beamer@title}%
+  {\def\inserttitle{#2}}%
+  {\protected\def\inserttitle{{\beamerhgf@titleformatspacingb{LetterSpace=15.0}\beamerhgf@titleformatcaps{\beamerhgf@titleformatspacinga[120]{#2}}}}}%
+  {}%
+  {\PackageError{beamerhgf}{Patching original title failed}\@ehc}
+\patchcmd{\beamer@subtitle}%
+  {\def\insertsubtitle{#2}}%
+  {\protected\def\insertsubtitle{{\beamerhgf@subtitleformatspacingb{LetterSpace=15.0}\beamerhgf@subtitleformatcaps{\beamerhgf@subtitleformatspacinga[120]{#2}}}}}%
+  {}%
+  {\PackageError{beamerhgf}{Patching original subtitle failed}\@ehc}
+\patchcmd{\beamer@part}%
+  {\def\insertpart{\expandafter\hyperlink\partlink}}%
+  {\def\insertpart{{\beamerhgf@partformatspacingb{LetterSpace=15.0}\beamerhgf@partformatcaps{\beamerhgf@partformatspacinga[120]{\expandafter\hyperlink\partlink}}}}}%
+  {}%
+  {\PackageError{beamerhgf}{Patching original part failed}\@ehc}
+\patchcmd{\beamer@@frametitle}
+  {{%
+      \gdef\insertframetitle{{#2\ifnum\beamer@autobreakcount>0\relax{}\space%
+      \usebeamertemplate*{frametitle continuation}\fi}}%
+    \gdef\beamer@frametitle{#2}%
+    \gdef\beamer@shortframetitle{#1}%
+  }}
+  {{%
+      \gdef\insertframetitle{{\beamerhgf@frametitleformatcaps{#2}\ifnum%
+      \beamer@autobreakcount>0\relax{}\space%
+      \usebeamertemplate*{frametitle continuation}\fi}}%
+    \gdef\beamer@frametitle{#2}%
+    \gdef\beamer@shortframetitle{#1}%
+    }}
+  {}
+  {\PackageError{beamerhgf}{Patching original frame title failed}\@ehc}
+\makeatother
+
+\mode
+<all>
