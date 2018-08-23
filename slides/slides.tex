@@ -1,5 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 
+\usetheme{HGF}
+
 \usepackage{caption}
 \usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
@@ -7,6 +9,22 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{xmpmulti}
+\usepackage{xpatch}
+
+\xpatchcmd{\itemize}
+{\def\makelabel}
+{\ifnum\@itemdepth=1\relax
+    \setlength\itemsep{2ex}% separation for first level
+    \else
+    \ifnum\@itemdepth=2\relax
+    \setlength\itemsep{1ex}% separation for second level
+    \else
+    \ifnum\@itemdepth=3\relax
+    \setlength\itemsep{0.5ex}% separation for third level
+    \fi\fi\fi\def\makelabel
+}
+{}
+{}
 
 \graphicspath{{./images/}}
 \makeatletter
@@ -16,8 +34,6 @@
 \newcommand\imageright[1]{ %
     \caption*{\scalebox{.5}{\textcolor{lightgray}{\textcopyright~#1}}} %
 }
-
-\usetheme{HGF}
 
 \title{Machine Learning with Neural Networks}
 \subtitle{GridKa School 2018}
@@ -45,38 +61,43 @@
 \label{subsec:terminology}
 
 \begin{frame}
+\frametitle{Terminology}
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item \textbf{Samples} or instances,\\ 
+            individual observations in your data,\\
+            e.g. an image, a specimen
+            \item \textbf{Features} or attributes,\\ 
+            single characteristic of a sample,\\
+             e.g. a pixel, measured weight
+            \item \textbf{Channels} or time,\\
+            depth information,\\
+            color channels, change over time
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \includegraphics{terminology.png}
+        \end{figure}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
     \frametitle{Terminology}
     \begin{figure}
         \centering
         \begin{tikzpicture}[fill=white, font=\footnotesize]
             \draw (0, 0) ellipse (7.0 and 3.5);
-            \node[align=left] at (5.6, 0.0) {AI\\e.g. rules};
+            \node[align=left] at (5.1, 0.0) {\textbf{Artificial}\\ \textbf{Intelligence (AI)}\\e.g. rule-based system};
             
-            \draw (-1.0, 0) ellipse (5.5 and 3.0) (-0.8, 2.0) node {Machine Learning};
+            \draw (-1.7, 0) ellipse (4.8 and 2.7) (1.8, 0.0) node[align=left] {\textbf{Machine}\\ \textbf{Learning}\\ e.g. Logistic\\ Regression};
             
-            \draw (-1.4, 0) ellipse (4.5 and 2.5) (-1.4, 1.0) node {Deep Learning};
+            \draw (-2.7, 0) ellipse (3.3 and 1.9) (-2.7, 0.0) node[align=left] {\textbf{Deep Learning}\\ e.g. Convolutional\\ Neural Networks};
         \end{tikzpicture}
     \end{figure}
 \end{frame}
-
-\begin{frame}
-    \frametitle{Terminology}
-    \begin{columns}
-        \begin{column}{0.48\textwidth}
-            \begin{itemize}
-                \item \textbf{Samples}
-                \item \textbf{Attributes}
-                \item \textbf{Channels}
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.48\textwidth}
-            \begin{figure}
-                \includegraphics{terminology.png}
-            \end{figure}
-        \end{column}
-    \end{columns}
-\end{frame}
-
 
 \begin{frame}
 \frametitle{Terminology}
@@ -91,10 +112,11 @@
     \medskip
 \end{frame}
 
-
 \subsection{Frameworks}
+\label{subsec:frameworks}
 
 \subsection{Exercise: MNIST Dataset}
+\label{subsec:fnn-exercise}
 
 \begin{frame}
     \frametitle{Exercise 1: Warm-up}
@@ -110,8 +132,8 @@
     \end{figure}
 \end{frame}
 
-\subsection{Classification}
 \subsection{Logistic Regression}
+\label{subsec:logistic-regression}
 
 \subsection{Exercise: Logistic Regression}
 \label{subsec:exercise-logistic-regression}
@@ -126,14 +148,17 @@
 \section{Neural Networks}
 \label{sec:neural-networks}
 
-\subsection{Optimization}
+\subsection{Backpropagation}
+\label{subsec:Backpropagation}
+
 \subsection{Generalization}
+\label{subsec:generalization}
 
 \subsection{Exercise: MNIST FNN}
 \label{subsec:exercise-fnn}
 
 \begin{frame}
-    \frametitle{Exercise: MNIST Image Classification}
+    \frametitle{Exercise: FNN MNIST Image Classification}
     
     \begin{figure}
         \centering
@@ -156,14 +181,26 @@
     \end{figure}
 \end{frame}
 
-\subsection{Network Architecture}
+\subsection{Network Architectures}
+\label{subsec:network-architectures}
+
 \subsection{Exercise: MNIST CNN}
+\label{subsec:cnn-exercise}
+
+\begin{frame}
+\frametitle{Exercise: FNN MNIST Image Classification}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{mnist.png}
+\end{figure}
+\end{frame}
 
 \section{Regression}
+\label{sec:regression}
 
-\subsection{Discrete Convolutions}
-\subsection{Network Architecture}
 \subsection{Exercise: Abalone}
+\label{subsec:regression-exercise}
 
 \begin{frame}
     \frametitle{Exercise: Abalone Age Regression Analysis}
@@ -172,6 +209,52 @@
         \includegraphics[width=0.7\linewidth]{abalone.jpg}
         \imageright{Garnelaxia}
     \end{figure}
+\end{frame}
+
+\section{Summary}
+\label{sec:summary}
+
+
+\begin{frame}
+\frametitle{Summary}
+\end{frame}
+
+\begin{frame}
+\frametitle{Open Topics}
+\end{frame}
+
+\begin{frame}
+\frametitle{Acknowledgment}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item \textbf{Eileen Kühn}
+            \begin{itemize}
+                \item GridKa School organization
+                \item Administrative paperwork
+            \end{itemize}
+            \item \textbf{Oskar Taubert}
+            \begin{itemize}
+                \item Assignment preparation
+                \item Exercise supervision
+            \end{itemize}
+            \item \textbf{Andreas Herten}
+            \begin{itemize}
+                \item Access to JURON
+                \item Technical support
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.25\linewidth]{eileen.jpg}\quad \includegraphics[width=0.25\linewidth]{oskar.jpg} \\\medskip
+            
+            \includegraphics[width=0.25\linewidth]{andreas.jpg}\quad \includegraphics[width=0.25\linewidth]{juron.jpg} \\
+        \end{figure}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \end{document}
