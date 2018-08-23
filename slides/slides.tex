@@ -331,8 +331,47 @@
     \end{column}
 \end{columns}
 \begin{itemize}
-    \item $lr$ is learning rate, constant update factor
+    \item $lr$ is learning rate, gradient update factor
     \item \textbf{Stochastic gradient descent (SGD)}, sample subset (\textbf{batch}) updates
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bias Trick}
+
+\begin{itemize}
+\item Cumbersome to keep track of weights $w$ and bias $b$
+\item \textbf{Idea:} fuse both into single weight matrix
+
+\begin{alignat*}{11}
+\hat{y}&=&w&x&+b&\leftrightarrow&\hat{y}&=&w&x \\
+\hat{y}&=&\begin{pmatrix}
+w_{1} \\
+w_{2} \\
+\vdots \\
+w_{n}
+\end{pmatrix}'&
+\begin{pmatrix}
+x_{i,1}\\
+x_{i,2}\\
+\vdots\\
+x_{i,n}\\
+\end{pmatrix}&+b&\leftrightarrow&\hat{y}&=&
+\begin{pmatrix}
+\textbf{b} \\
+w_{1} \\
+w_{2} \\
+\vdots \\
+w_{n}
+\end{pmatrix}'&
+\begin{pmatrix}
+\textbf{1}\\
+x_{i,1}\\
+x_{i,2}\\
+\vdots\\
+x_{i,n}\\
+\end{pmatrix}
+\end{alignat*}
 \end{itemize}
 \end{frame}
 
@@ -359,6 +398,14 @@
 \subsection{Logistic Regression}
 \label{subsec:logistic-regression}
 
+\begin{frame}
+\frametitle{Pattern Recognition Types}
+\begin{itemize}
+    \item \textbf{Regression:} predict continuous value, e.g. stock price, $y\in\mathbb{R}^{c}$
+    \item \textbf{Classification:}
+\end{itemize}
+\end{frame}
+
 \subsection{Exercise: Logistic Regression}
 \label{subsec:exercise-logistic-regression}
 
@@ -371,6 +418,196 @@
 
 \section{Neural Networks}
 \label{sec:neural-networks}
+
+\begin{frame}
+\frametitle{XOR-Problem}
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.9\linewidth,
+                grid=major,
+                grid style={line width=.3pt, draw=blue!10},
+                major grid style={line width=.3pt, draw=blue!10},
+                %minor tick num=2,
+                xlabel={$x_1$},
+                ylabel={$x_2$},
+                xmin=-0.1,
+                xmax=1.1,
+                ymin=-0.1,
+                ymax=1.1
+            ]
+            \node[draw, circle, fill=red,  radius=0.3cm] at (1, 1) {};
+            \node[draw, circle, fill=red,  radius=0.3cm] at (0, 0) {};
+            \node[draw, circle, fill=blue, radius=0.3cm] at (1, 0) {};
+            \node[draw, circle, fill=blue, radius=0.3cm] at (0, 1) {};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fully-connected Neural Network}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \node[draw, circle, thick, minimum size=0.8cm] (input1) at (-2,-0.7) {\footnotesize$x_1$};
+            \node[draw, circle, thick, minimum size=0.8cm] (input2) at (-2, 0.7) {\footnotesize$x_2$};
+            
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden1) at (0,-1.4) {\footnotesize$h_1$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden2) at (0, 0)   {\footnotesize$h_2$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden3) at (0, 1.4) {\footnotesize$h_3$};
+            
+            \node[draw, circle, thick, minimum size=0.8cm] (output) at (2, 0) {\footnotesize$\hat{y}$};
+            
+            \draw[->, >=stealth, thick] (input1)--(hidden1);
+            \draw[->, >=stealth, thick] (input1)--(hidden2);
+            \draw[->, >=stealth, thick] (input1)--(hidden3);
+            
+            \draw[->, >=stealth, thick] (input2)--(hidden1);
+            \draw[->, >=stealth, thick] (input2)--(hidden2);
+            \draw[->, >=stealth, thick] (input2)--(hidden3);
+            
+            \draw[->, >=stealth, thick] (hidden1)--(output);
+            \draw[->, >=stealth, thick] (hidden2)--(output);
+            \draw[->, >=stealth, thick] (hidden3)--(output);
+            
+            \node at (-2, -2.5) {\footnotesize \textbf{Input}};
+            \node at ( 0, -2.5) {\footnotesize \textbf{Hidden}};
+            \node at ( 2, -2.5) {\footnotesize \textbf{Output}};
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Universal Approximation Theorem}
+
+\uncover<1->{
+A feed-forward neural network with a linear output and at least one hidden layer can approximate any reasonable function to arbitrary precision with a finite number of nodes.
+}
+\vspace{0.5cm}
+\begin{itemize}
+    \item<2-> \textbf{Good News}
+    \begin{itemize}
+        \item Networks can perform highly complex tasks
+        \item All necessary ingredients available
+    \end{itemize}
+    \item<3-> \textbf{Bad News}
+    \begin{itemize}
+        \item Does not specify number of necessary nodes
+        \item No remarks on neuron connectivity
+        \item In practice: deep networks perform better
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Multi-class Classification}
+
+\begin{itemize}
+    \item \textbf{One-hot class encoding:} encode classes as sparse vectors \\
+    $y=(y_1, y_2, ..., y_c)$, only one is active, e.g. class $2\rightarrow (0, 1, ..., 0)$
+    \item \textbf{Softmax output activation:} $\hat{y}=softmax(z)=\frac{e^{z_{j}}}{\sum_{j}e^{z_{j}}}$ for $j=1...c$\\
+    achieve joint-probability of $1$, normalize across model outputs $z$
+    \item \textbf{Cross-entropy loss:} convex-function $J(w)=\frac{1}{n}\sum_{i=1}^{n}\sum_{j}^{c}y_{i,j}\log\hat{y_{i,j}}$\\
+    maximum likelihood principle
+\end{itemize}
+\end{frame}
+
+\subsection{Additional Components}
+\label{subsec:additional-components}
+
+\begin{frame}
+\frametitle{Activation Functions}
+
+\begin{itemize}
+    \item Activation functions $a(x)$ introduce \textbf{non-linearity}, e.g. sigmoid function
+    \item Other non-linear choices, e.g. $tanh(x)$, $relu(x)=max(0,x)$, etc.
+\end{itemize}
+
+\begin{figure}
+    \begin{tikzpicture}
+    \begin{axis}[
+        title=sigmoid,
+        width=0.3\linewidth, 
+        grid=major,
+        grid style={dashed, line width=.3pt, draw=blue!10},
+        major grid style={line width=.3pt, draw=blue!10},
+        xlabel={$x$},
+        ylabel={$a(x)$},
+        xmin=-2,
+        xmax=2,
+        ymin=-2,
+        ymax=2
+    ]
+    \addplot [blue, thick, mark=none, smooth, samples=50] {1/(1+e^(-x))};
+    \end{axis} 
+    \end{tikzpicture}\begin{tikzpicture}
+    \begin{axis}[
+        title=tanh,
+        width=0.3\linewidth, 
+        grid=major,
+        grid style={dashed, line width=.3pt, draw=blue!10},
+        major grid style={line width=.3pt, draw=blue!10},
+        yticklabels={,,},
+        xlabel={$x$},
+        xmin=-2,
+        xmax=2,
+        ymin=-2,
+        ymax=2
+    ]
+    \addplot [blue, thick, mark=none, smooth, samples=50] {tanh(x)};
+    \end{axis}
+    \end{tikzpicture}\begin{tikzpicture}
+    \begin{axis}[
+        title=ReLU,
+        width=0.3\linewidth, 
+        grid=major,
+        grid style={dashed, line width=.3pt, draw=blue!10},
+        major grid style={line width=.3pt, draw=blue!10},
+        yticklabels={,,},
+        xlabel={$x$},
+        xmin=-2,
+        xmax=2,
+        ymin=-2,
+        ymax=2
+    ]
+    \addplot [blue, thick, mark=none, domain=-3:3] {max(0, x)};
+    \end{axis}
+    \end{tikzpicture}\begin{tikzpicture}
+    \begin{axis}[
+        title=SeLU,
+        width=0.3\linewidth, 
+        grid=major,
+        grid style={dashed, line width=.3pt, draw=blue!10},
+        major grid style={line width=.3pt, draw=blue!10},
+        yticklabels={,,},
+        xlabel={$x$},
+        xmin=-2,
+        xmax=2,
+        ymin=-2,
+        ymax=2
+    ]
+    \addplot [blue, thick, mark=none, smooth, samples=50, domain=-3:0]{1.0507 * 1.6732 * (e^x - 1)};
+    \addplot [blue, thick, mark=none, smooth, samples=50, domain=0:3]{x};
+    \end{axis}
+    \end{tikzpicture}
+\end{figure}
+\end{frame}
 
 \subsection{Backpropagation}
 \label{subsec:Backpropagation}
@@ -438,9 +675,16 @@
 \section{Summary}
 \label{sec:summary}
 
-
 \begin{frame}
 \frametitle{Summary}
+
+\begin{itemize}
+    \item Supervised machine learning
+    \begin{itemize}
+        \item Logistic regression
+        \item (Convolutional) neural networks
+    \end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -456,7 +700,7 @@
             \item \textbf{Eileen Kühn}
             \begin{itemize}
                 \item GridKa School organization
-                \item Administrative paperwork
+                \item Paperwork
             \end{itemize}
             \item \textbf{Oskar Taubert}
             \begin{itemize}
