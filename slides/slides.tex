@@ -29,6 +29,7 @@
 {}
 
 \usetikzlibrary{
+    arrows,
     decorations, 
     shapes,
     shapes.misc
@@ -647,6 +648,18 @@ x_{i,n}\\
 \subsection{Libraries}
 \label{subsec:libraries}
 
+\begin{frame}
+\frametitle{Autograd Frameworks: TensorFlow \& Co}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keras}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keras}
+\end{frame}
+
 \subsection{Exercise: Logistic Regression}
 \label{subsec:exercise-logistic-regression}
 
@@ -991,8 +1004,48 @@ x_{i,n}\\
 
 \begin{columns}
     \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Alternate forward and backward pass
+            \item \textbf{Hidden layer} are nested functions
+            \begin{itemize}
+                \item Requires \textbf{chain rule} for gradient
+                \item $h'(x)=f'(g(x))*g(x)$
+                \item \textbf{Neurons store forward result}
+            \end{itemize}
+            \item Weight initialization in network\\
+            small random numbers
+            \item Iterations are now called \textbf{epochs}
+        \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \node[draw, circle, thick, minimum size=0.8cm] (input1) at (-2,-0.7) {\footnotesize$x_1$};
+            \node[draw, circle, thick, minimum size=0.8cm] (input2) at (-2, 0.7) {\footnotesize$x_2$};
+            
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden1) at (0,-1.4) {\footnotesize$h_1$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden2) at (0, 0)   {\footnotesize$h_2$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden3) at (0, 1.4) {\footnotesize$h_3$};
+            
+            \node[draw, circle, thick, minimum size=0.8cm] (output) at (2, 0) {\footnotesize$\hat{y}$};
+            
+            \draw[red, ->, >=stealth, thick] (hidden1)--(input1.east);
+            \draw[red, ->, >=stealth, thick] (hidden2)--(input1);
+            \draw[red, ->, >=stealth, thick] (hidden3)--(input1);
+            
+            \draw[red, ->, >=stealth, thick] (hidden1)--(input2);
+            \draw[red, ->, >=stealth, thick] (hidden2)--(input2);
+            \draw[red, ->, >=stealth, thick] (hidden3)--(input2);
+            
+            \draw[red, ->, >=stealth, thick] (output)--(hidden1);
+            \draw[red, ->, >=stealth, thick] (output)--(hidden2);
+            \draw[red, ->, >=stealth, thick] (output)--(hidden3);
+            
+            \node at (-2, -2.5) {\footnotesize \textbf{Input}};
+            \node at ( 0, -2.5) {\footnotesize \textbf{Hidden}};
+            \node at ( 2, -2.5) {\footnotesize \textbf{Output}};
+            \end{tikzpicture}
+        \end{figure}
     \end{column}
 \end{columns}
 \end{frame}
@@ -1097,8 +1150,16 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Deep Learning}
+\end{frame}
+
 \subsection{Multi-class Classification}
 \label{subsec:multi-class-classification}
+
+\begin{frame}
+\frametitle{Multi-class Classification}
+\end{frame}
 
 \begin{frame}
 \frametitle{Multi-class Classification}
@@ -1169,6 +1230,10 @@ A feed-forward neural network with a linear output and at least one hidden layer
 
 \begin{frame}
 \frametitle{Regularization}
+\end{frame}
+
+\begin{frame}
+\frametitle{L1- and L2-Norm}
 \end{frame}
 
 \begin{frame}
@@ -1259,6 +1324,10 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \end{columns}
 \end{frame}
 
+\begin{frame}
+\frametitle{Batch Normalization}
+\end{frame}
+
 \subsection{Exercise: MNIST FNN}
 \label{subsec:exercise-fnn}
 
@@ -1305,15 +1374,60 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \label{subsec:network-architectures}
 
 \begin{frame}
+\frametitle{ImageNet (ILSVRC)}
+\end{frame}
+
+\begin{frame}
+\frametitle{Inception}
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{inception.png}
+    \imageright{Joe Marino}
+\end{figure}
+\end{frame}
+
+\begin{frame}
 \frametitle{Inception}
 
 \begin{columns}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.38\textwidth}
         \begin{itemize}
             \item a
         \end{itemize}
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.58\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (concat) at (0, 1) {\tiny Concatenation};
+            
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (left 2) at (-3, -0.25) {\tiny 1x1 convolution};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (mid left 2) at (-1, -0.25) {\tiny 3x3 convolution};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (mid right 2) at (1, -0.25) {\tiny 5x5 convolution};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (right 2) at (3, -0.25) {\tiny 1x1 convolution};
+                
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (mid left 1) at (-1, -1.5) {\tiny 1x1 convolution};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (mid right 1) at (1, -1.5) {\tiny 1x1 convolution};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (right 1) at (3, -1.5) {\tiny 3x3 max pooling};
+                
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (previous) at (0, -2.75) {\tiny Previous layer};
+                
+                \draw[->, >=stealth] (left 2)--(concat);
+                \draw[->, >=stealth] (mid left 2)--(concat);
+                \draw[->, >=stealth] (mid right 2)--(concat);
+                \draw[->, >=stealth] (right 2)--(concat);
+                
+                \draw[->, >=stealth] (mid left 1)--(mid left 2);
+                \draw[->, >=stealth] (mid right 1)--(mid right 2);
+                \draw[->, >=stealth] (right 1)--(right 2);
+                
+                \path[->, >=stealth] (previous) edge [bend left] (left 2);
+                \draw[->, >=stealth] (previous)--(mid left 1);
+                \draw[->, >=stealth] (previous)--(mid right 1);
+                \draw[->, >=stealth] (previous)--(right 1);
+                
+                \node at (0, -3.75) {\scriptsize\textbf{Inception Module}};
+            \end{tikzpicture}
+        \end{figure}
     \end{column}
 \end{columns}
 \end{frame}
@@ -1321,6 +1435,16 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \begin{frame}
 \frametitle{ResNet}
 
+\begin{figure}
+    \includegraphics[width=\linewidth]{resnet.jpg}
+    \imageright{Medium}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Residual Unit}
+
 \begin{columns}
     \begin{column}{0.48\textwidth}
         \begin{itemize}
@@ -1328,6 +1452,33 @@ A feed-forward neural network with a linear output and at least one hidden layer
         \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (next layer) at (0, 2.7) {\tiny Next layer};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (relu out) at (0, 2.0) {\tiny ReLU};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (addition) at (0, 1.3) {\tiny Addition};
+                
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (5) at (1.5, 0.6) {\tiny BatchNorm};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (4) at (1.5, -0.1) {\tiny Convolution};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (3) at (1.5, -0.8) {\tiny ReLU};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (2) at (1.5, -1.6) {\tiny BatchNorm};
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (1) at (1.5, -2.3) {\tiny Convolution};
+                
+                \node[draw, rectangle, align=center, minimum width=1.8cm, minimum height=0.4cm, inner sep=0cm] (previous) at (0, -3) {\tiny Previous layer};
+                
+                \draw[->, >=stealth] (previous)--(addition);
+                \draw[->, >=stealth] (previous)--(1);
+                \draw[->, >=stealth] (1)--(2);
+                \draw[->, >=stealth] (2)--(3);
+                \draw[->, >=stealth] (3)--(4);
+                \draw[->, >=stealth] (4)--(5);
+                \draw[->, >=stealth] (5)--(addition);
+                \draw[->, >=stealth] (addition)--(relu out);
+                \draw[->, >=stealth] (relu out)--(next layer);
+                
+                \node at (-1.0, -0.6) {\tiny\textbf{Residual Unit}};
+            \end{tikzpicture}
+        \end{figure}
     \end{column}
 \end{columns}
 \end{frame}
@@ -1375,7 +1526,15 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \end{frame}
 
 \begin{frame}
-\frametitle{Open Topics}
+\frametitle{What's more?}
+
+\begin{itemize}
+    \item \textbf{Data augmentation}
+    \item \textbf{Embedding}
+    \item \textbf{Capsule Networks}
+    \item \textbf{Recurrent Neural Networks (RNN)}
+    \item \textbf{Encoder-Decoders}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
