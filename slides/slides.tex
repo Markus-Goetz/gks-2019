@@ -983,6 +983,99 @@ x_{i,n}\\
 \end{columns}
 \end{frame}
 
+\subsection{Backpropagation}
+\label{subsec:backpropagation}
+
+\begin{frame}
+\frametitle{Backpropagation}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Activation Functions}
+
+    \begin{itemize}
+        \item Activation functions $a(x)$ introduce \textbf{non-linearity}, e.g. sigmoid function
+        \item Other non-linear choices, e.g. $tanh(x)$, $relu(x)=max(0,x)$, etc.
+        \item Better computational properties, e.g. avoid \textbf{vanishing gradient}
+    \end{itemize}
+    \vspace{-0.5cm}
+    \begin{figure}
+    \begin{tikzpicture}
+        \begin{axis}[
+            title=sigmoid,
+            width=0.3\linewidth, 
+            grid=major,
+            grid style={dashed, line width=.3pt, draw=blue!10},
+            major grid style={line width=.3pt, draw=blue!10},
+            xlabel={$x$},
+            ylabel={$a(x)$},
+            xmin=-2,
+            xmax=2,
+            ymin=-2,
+            ymax=2
+        ]
+        \addplot [blue, thick, mark=none, smooth, samples=50] {1/(1+e^(-x))};
+        \end{axis} 
+    \end{tikzpicture}\begin{tikzpicture}
+        \begin{axis}[
+            title=tanh,
+            width=0.3\linewidth, 
+            grid=major,
+            grid style={dashed, line width=.3pt, draw=blue!10},
+            major grid style={line width=.3pt, draw=blue!10},
+            yticklabels={,,},
+            xlabel={$x$},
+            xmin=-2,
+            xmax=2,
+            ymin=-2,
+            ymax=2
+        ]
+    \addplot [blue, thick, mark=none, smooth, samples=50] {tanh(x)};
+    \end{axis}
+    \end{tikzpicture}\begin{tikzpicture}
+        \begin{axis}[
+            title=ReLU,
+            width=0.3\linewidth, 
+            grid=major,
+            grid style={dashed, line width=.3pt, draw=blue!10},
+            major grid style={line width=.3pt, draw=blue!10},
+            yticklabels={,,},
+            xlabel={$x$},
+            xmin=-2,
+            xmax=2,
+            ymin=-2,
+            ymax=2
+        ]
+        \addplot [blue, thick, mark=none, domain=-3:3] {max(0, x)};
+        \end{axis}
+    \end{tikzpicture}\begin{tikzpicture}
+        \begin{axis}[
+            title=SeLU,
+            width=0.3\linewidth, 
+            grid=major,
+            grid style={dashed, line width=.3pt, draw=blue!10},
+            major grid style={line width=.3pt, draw=blue!10},
+            yticklabels={,,},
+            xlabel={$x$},
+            xmin=-2,
+            xmax=2,
+            ymin=-2,
+            ymax=2
+        ]
+        \addplot [blue, thick, mark=none, smooth, samples=50, domain=-3:0]{1.0507 * 1.6732 * (e^x - 1)};
+        \addplot [blue, thick, mark=none, smooth, samples=50, domain=0:3]{x};
+        \end{axis}
+    \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
 \begin{frame}
 \frametitle{Universal Approximation Theorem}
 
@@ -1004,9 +1097,6 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \end{itemize}
 \end{frame}
 
-\subsection{Backpropagation}
-\label{subsec:backpropagation}
-
 \subsection{Multi-class Classification}
 \label{subsec:multi-class-classification}
 
@@ -1023,87 +1113,8 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \end{itemize}
 \end{frame}
 
-\subsection{Addition Components}
+\subsection{Additional Components}
 \label{subsec:more-components}
-
-\begin{frame}
-\frametitle{Activation Functions}
-
-\begin{itemize}
-    \item Activation functions $a(x)$ introduce \textbf{non-linearity}, e.g. sigmoid function
-    \item Other non-linear choices, e.g. $tanh(x)$, $relu(x)=max(0,x)$, etc.
-    \item Better computational properties, e.g. avoid \textbf{vanishing gradient}
-\end{itemize}
-\vspace{-0.5cm}
-\begin{figure}
-    \begin{tikzpicture}
-    \begin{axis}[
-        title=sigmoid,
-        width=0.3\linewidth, 
-        grid=major,
-        grid style={dashed, line width=.3pt, draw=blue!10},
-        major grid style={line width=.3pt, draw=blue!10},
-        xlabel={$x$},
-        ylabel={$a(x)$},
-        xmin=-2,
-        xmax=2,
-        ymin=-2,
-        ymax=2
-    ]
-    \addplot [blue, thick, mark=none, smooth, samples=50] {1/(1+e^(-x))};
-    \end{axis} 
-    \end{tikzpicture}\begin{tikzpicture}
-    \begin{axis}[
-        title=tanh,
-        width=0.3\linewidth, 
-        grid=major,
-        grid style={dashed, line width=.3pt, draw=blue!10},
-        major grid style={line width=.3pt, draw=blue!10},
-        yticklabels={,,},
-        xlabel={$x$},
-        xmin=-2,
-        xmax=2,
-        ymin=-2,
-        ymax=2
-    ]
-    \addplot [blue, thick, mark=none, smooth, samples=50] {tanh(x)};
-    \end{axis}
-    \end{tikzpicture}\begin{tikzpicture}
-    \begin{axis}[
-        title=ReLU,
-        width=0.3\linewidth, 
-        grid=major,
-        grid style={dashed, line width=.3pt, draw=blue!10},
-        major grid style={line width=.3pt, draw=blue!10},
-        yticklabels={,,},
-        xlabel={$x$},
-        xmin=-2,
-        xmax=2,
-        ymin=-2,
-        ymax=2
-    ]
-    \addplot [blue, thick, mark=none, domain=-3:3] {max(0, x)};
-    \end{axis}
-    \end{tikzpicture}\begin{tikzpicture}
-    \begin{axis}[
-        title=SeLU,
-        width=0.3\linewidth, 
-        grid=major,
-        grid style={dashed, line width=.3pt, draw=blue!10},
-        major grid style={line width=.3pt, draw=blue!10},
-        yticklabels={,,},
-        xlabel={$x$},
-        xmin=-2,
-        xmax=2,
-        ymin=-2,
-        ymax=2
-    ]
-    \addplot [blue, thick, mark=none, smooth, samples=50, domain=-3:0]{1.0507 * 1.6732 * (e^x - 1)};
-    \addplot [blue, thick, mark=none, smooth, samples=50, domain=0:3]{x};
-    \end{axis}
-    \end{tikzpicture}
-\end{figure}
-\end{frame}
 
 \subsection{Generalization}
 \label{subsec:generalization}
@@ -1295,10 +1306,30 @@ A feed-forward neural network with a linear output and at least one hidden layer
 
 \begin{frame}
 \frametitle{Inception}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item a
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{ResNet}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item a
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \subsection{Exercise: MNIST CNN}
