@@ -1293,11 +1293,90 @@ A feed-forward neural network with a linear output and at least one hidden layer
 
 \begin{frame}
 \frametitle{Multi-class Classification}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \node[draw, circle, thick, minimum size=0.8cm] (input1) at (-2,-1.5) {\footnotesize$x_1$};
+            \node[draw, circle, thick, minimum size=0.8cm] (input2) at (-2,-0.5) {\footnotesize$x_2$};
+            \node[draw, circle, thick, minimum size=0.8cm] (input3) at (-2, 0.5) {\footnotesize$x_3$};
+            \node[draw, circle, thick, minimum size=0.8cm] (input4) at (-2, 1.5) {\footnotesize$x_4$};
+            
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden1) at (0,-1.5) {\footnotesize$h_1$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden2) at (0,-0.5) {\footnotesize$h_2$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden3) at (0, 0.5) {\footnotesize$h_3$};
+            \node[draw, circle, thick, minimum size=0.8cm] (hidden4) at (0, 1.5) {\footnotesize$h_4$};
+            
+            \node[draw, red, circle, thick, minimum size=0.8cm] (output1) at (2, -1) {\footnotesize$\hat{y}_1$};
+            \node[draw, red, circle, thick, minimum size=0.8cm] (output2) at (2, 0) {\footnotesize$\hat{y}_2$};
+            \node[draw, red, circle, thick, minimum size=0.8cm] (output3) at (2, 1) {\footnotesize$\hat{y}_3$};
+            
+            \draw[->, >=stealth, thick] (input1)--(hidden1);
+            \draw[->, >=stealth, thick] (input1)--(hidden2);
+            \draw[->, >=stealth, thick] (input1)--(hidden3);
+            \draw[->, >=stealth, thick] (input1)--(hidden4);
+            
+            \draw[->, >=stealth, thick] (input2)--(hidden1);
+            \draw[->, >=stealth, thick] (input2)--(hidden2);
+            \draw[->, >=stealth, thick] (input2)--(hidden3);
+            \draw[->, >=stealth, thick] (input2)--(hidden4);
+            
+            \draw[->, >=stealth, thick] (input3)--(hidden1);
+            \draw[->, >=stealth, thick] (input3)--(hidden2);
+            \draw[->, >=stealth, thick] (input3)--(hidden3);
+            \draw[->, >=stealth, thick] (input3)--(hidden4);
+            
+            \draw[->, >=stealth, thick] (input4)--(hidden1);
+            \draw[->, >=stealth, thick] (input4)--(hidden2);
+            \draw[->, >=stealth, thick] (input4)--(hidden3);
+            \draw[->, >=stealth, thick] (input4)--(hidden4);
+            
+            \draw[->, >=stealth, thick] (hidden1)--(output1);
+            \draw[->, >=stealth, thick] (hidden2)--(output1);
+            \draw[->, >=stealth, thick] (hidden3)--(output1);
+            \draw[->, >=stealth, thick] (hidden4)--(output1);
+            
+            \draw[->, >=stealth, thick] (hidden1)--(output2);
+            \draw[->, >=stealth, thick] (hidden2)--(output2);
+            \draw[->, >=stealth, thick] (hidden3)--(output2);
+            \draw[->, >=stealth, thick] (hidden4)--(output2);
+            
+            \draw[->, >=stealth, thick] (hidden1)--(output3);
+            \draw[->, >=stealth, thick] (hidden2)--(output3);
+            \draw[->, >=stealth, thick] (hidden3)--(output3);
+            \draw[->, >=stealth, thick] (hidden4)--(output3);
+            
+            \node at (-2, -2.5) {\footnotesize \textbf{Input}};
+            \node at ( 0, -2.5) {\footnotesize \textbf{Hidden}};
+            \node at ( 2, -2.5) {\footnotesize \textbf{Output}};
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Extension of binary classification concept
+            \item \textbf{One-versus-all classification}
+            \begin{itemize}
+                \item Build $c$ binary classifiers
+                \item Pick class with highest confidence/probability
+            \end{itemize}
+            \item In neural networks
+            \begin{itemize}
+                \item Create multiple networks
+                \item \textbf{Add output neurons}
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+\end{columns}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Multi-class Classification}
 
+Multi-class classification recipe:
+\medskip
 \begin{itemize}
     \item \textbf{One-hot class encoding:} encode classes as sparse vectors \\
     $y=(y_1, y_2, ..., y_c)$, only one is active, e.g. class $2\rightarrow (0, 1, ..., 0)$
@@ -1307,9 +1386,6 @@ A feed-forward neural network with a linear output and at least one hidden layer
     maximum likelihood principle
 \end{itemize}
 \end{frame}
-
-\subsection{Additional Components}
-\label{subsec:more-components}
 
 \subsection{Generalization}
 \label{subsec:generalization}
@@ -1524,8 +1600,16 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 \begin{columns}
     \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item 
+        \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \begin{tikzpicture}
+            \end{tikzpicture}
+        \end{figure}
     \end{column}
 \end{columns}
 \end{frame}
