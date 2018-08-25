@@ -1228,6 +1228,64 @@ A feed-forward neural network with a linear output and at least one hidden layer
 
 \begin{frame}
 \frametitle{Deep Learning}
+
+\begin{itemize}
+    \item In practice: \textbf{stacking layers} works better
+    \item \textbf{Deep learning:} more than one stage of non-linearities, e.g. layers
+    \medskip
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+            \node[rectangle, fill=lightgray!10, minimum width=11cm, minimum height=2.0cm] at (4.0, 0.5) {};
+        
+            \node[draw, thick, circle, black] (input4) at (-0.9, 3) {};
+            \node[draw, thick, circle, black] (input3) at (-0.9, 2) {};
+            \node[draw, thick, circle, black] (input2) at (-0.9, 1) {};
+            \node[draw, thick, circle, black] (input1) at (-0.9, 0) {};
+            
+            \node[draw, thick, rectangle, align=center, text width=1.6cm, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (node14) at (1.5, 3) {\tiny hand-designed\\[-5pt] program};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (node13) at (1.5, 2) {\tiny hand-designed\\[-5pt]\tiny features};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfkeytechnologies!30] (node12) at (1.5, 1) {\tiny features};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfkeytechnologies!30] (node11) at (1.5, 0) {\tiny simple features};
+            
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfkeytechnologies!30] (node23) at (4, 2) {\tiny mapping};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfkeytechnologies!30] (node22) at (4, 1) {\tiny mapping};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfkeytechnologies!30] (node21) at (4, 0) {\tiny abstract\\[-5pt]\tiny features};
+            
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfkeytechnologies!30] (node31) at (6.5, 0) {\tiny mapping};
+            
+            \node[draw, thick, circle, black] (output4) at (3.9, 3) {};
+            \node[draw, thick, circle, black] (output3) at (6.4, 2) {};
+            \node[draw, thick, circle, black] (output2) at (6.4, 1) {};
+            \node[draw, thick, circle, black] (output1) at (8.9, 0) {};
+            
+            \draw[->, >=stealth, thick] (input4)--(node14);
+            \draw[->, >=stealth, thick] (node14)--(output4);
+            
+            \draw[->, >=stealth, thick] (input3)--(node13);
+            \draw[->, >=stealth, thick] (node13)--(node23);
+            \draw[->, >=stealth, thick] (node23)--(output3);
+            
+            \draw[->, >=stealth, thick] (input2)--(node12);
+            \draw[->, >=stealth, thick] (node12)--(node22);
+            \draw[->, >=stealth, thick] (node22)--(output2);
+            
+            \draw[->, >=stealth, thick] (input1)--(node11);
+            \draw[->, >=stealth, thick] (node11)--(node21);
+            \draw[->, >=stealth, thick] (node21)--(node31);
+            \draw[->, >=stealth, thick] (node31)--(output1);
+            
+            \node[] at (-0.9, -0.75) {\tiny\bfseries Input};
+            \node[] at ( 8.9, -0.75) {\tiny\bfseries Output};
+            \node[align=right] at (8.35, 3) {\tiny\bfseries Rule-based system};
+            \node[align=right] at (8.45, 2) {\tiny\bfseries Machine learning};
+            \node[align=right] at (8.55, 1.25) {\tiny\bfseries Deep learning};
+            
+            \node[fill=hgfkeytechnologies!30] at (3.18, -0.75) {};
+            \node[] at (4.18, -0.75) {\tiny machine learned};
+        \end{tikzpicture}
+    \end{figure}
+\end{itemize}
 \end{frame}
 
 \subsection{Multi-class Classification}
@@ -1400,10 +1458,6 @@ A feed-forward neural network with a linear output and at least one hidden layer
 \end{columns}
 \end{frame}
 
-\begin{frame}
-\frametitle{Batch Normalization}
-\end{frame}
-
 \begin{frame}[fragile]
 \frametitle{Keras}
 
@@ -1449,6 +1503,14 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \label{subsec:discrete-convolution}
 
 \begin{frame}
+\frametitle{Computer Vision}
+\end{frame}
+
+\begin{frame}
+\frametitle{Discrete Convolution}
+\end{frame}
+
+\begin{frame}
     \frametitle{Discrete Convolution}
     \begin{figure}
         \centering
@@ -1459,6 +1521,17 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 \begin{frame}
 \frametitle{Pooling}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Batch Normalization}
 \end{frame}
 
 \begin{frame}
@@ -1582,11 +1655,34 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Keras}
+
+\begin{lstlisting}[language=Python]
+from keras.models import Sequential
+from keras.layers import BatchNormalization, Conv2D,
+                         Dense, MaxPooling2D
+from keras.regularizers import l2
+
+# Logistic regression model with two features
+model = Sequential()
+&\textbf{model.add(Conv2D(16, (5, 5), padding="same")}&
+&\textbf{model.add(MaxPooling2D((2, 2), strides=(1, 1))}&
+&\textbf{model.add(BatchNormalization())}&
+model.add(Dense(128)
+model.add(Dense(classes, activation='softmax'))
+
+# Model compilation
+model.compile(loss="categorical_crossentropy", optimizer="sgd")
+\end{lstlisting}
+
+\end{frame}
+
 \subsection{Exercise: MNIST CNN}
 \label{subsec:cnn-exercise}
 
 \begin{frame}
-\frametitle{Exercise: FNN MNIST Image Classification}
+\frametitle{Exercise: CNN MNIST Image Classification}
 
 \begin{figure}
     \centering
