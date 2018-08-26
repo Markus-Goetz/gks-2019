@@ -735,7 +735,7 @@ x_{i,n}\\
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Keras}
+\frametitle{Keras an Example}
 
 \begin{lstlisting}[language=Python]
 from keras.models import Sequential
@@ -1396,6 +1396,151 @@ Multi-class classification recipe:
 
 \begin{frame}
 \frametitle{Over- and Underfitting}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.9\linewidth, 
+                height=0.48\textheight,
+                grid=both,
+                grid style={line width=.3pt, draw=blue!10},
+                major grid style={line width=.3pt, draw=blue!10},
+                minor tick num=2,
+                ticks=none,
+                xticklabels={,,},
+                ylabel={$y$},
+                xmin=-0.1,
+                xmax=1.0,
+                ymin=-1.1,
+                ymax=1.1
+            ]
+            \addplot [blue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [red, thick, mark=none] {0.036};
+            \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
+                (0.0, 0.5)
+                (0.1111111111111111, 0.6527876096865393)
+                (0.2222222222222222, 0.984807753012208)
+                (0.3333333333333333, 0.8960254037844387)
+                (0.4444444444444444, 0.0)
+                (0.5555555555555556, 0.07)
+                (0.6666666666666666, -0.8660254037844384)
+                (0.7777777777777777, -0.7848077530122082)
+                (0.8888888888888888, -0.6427876096865396)
+                (1.0, 0.0)
+            };
+            \node [] at (axis cs:0.85, 0.9) {\tiny degree=0};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}\begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.9\linewidth, 
+                height=0.48\textheight,
+                grid=both,
+                grid style={line width=.3pt, draw=blue!10},
+                major grid style={line width=.3pt, draw=blue!10},
+                minor tick num=2,
+                ticks=none,
+                xticklabels={,,},
+                xlabel={$x$},
+                ylabel={$y$},
+                xmin=-0.1,
+                xmax=1.0,
+                ymin=-1.1,
+                ymax=1.1
+            ]
+            \addplot [blue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [red, thick, mark=none, smooth, samples=200, domain=0:1] {18.6580627*x^3-28.0637985*x^2+9.40931656*x+0.0228460191};
+            \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
+                (0.0, 0.5)
+                (0.1111111111111111, 0.6527876096865393)
+                (0.2222222222222222, 0.984807753012208)
+                (0.3333333333333333, 0.8960254037844387)
+                (0.4444444444444444, 0.0)
+                (0.5555555555555556, 0.07)
+                (0.6666666666666666, -0.8660254037844384)
+                (0.7777777777777777, -0.7848077530122082)
+                (0.8888888888888888, -0.6427876096865396)
+                (1.0, 0.0)
+            };
+            \node [] at (axis cs:0.85, 0.9) {\tiny degree=3};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.9\linewidth, 
+                height=0.48\textheight,
+                grid=both,
+                grid style={line width=.3pt, draw=blue!10},
+                major grid style={line width=.3pt, draw=blue!10},
+                minor tick num=2,
+                ticks=none,
+                xticklabels={,,},
+                xmin=-0.1,
+                xmax=1.0,
+                ymin=-1.1,
+                ymax=1.1
+            ]
+            \addplot [blue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [red, thick, mark=none, smooth, samples=10] {-1.28635944*x+0.67917972};
+            \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
+                (0.0, 0.5)
+                (0.1111111111111111, 0.6527876096865393)
+                (0.2222222222222222, 0.984807753012208)
+                (0.3333333333333333, 0.8960254037844387)
+                (0.4444444444444444, 0.0)
+                (0.5555555555555556, 0.07)
+                (0.6666666666666666, -0.8660254037844384)
+                (0.7777777777777777, -0.7848077530122082)
+                (0.8888888888888888, -0.6427876096865396)
+                (1.0, 0.0)
+            };
+            \node [] at (axis cs:0.85, 0.9) {\tiny degree=1};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}\begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.9\linewidth, 
+                height=0.48\textheight,
+                grid=both,
+                grid style={line width=.3pt, draw=blue!10},
+                major grid style={line width=.3pt, draw=blue!10},
+                minor tick num=2,
+                ticks=none,
+                xticklabels={,,},
+                xlabel={$x$},
+                xmin=-0.1,
+                xmax=1.0,
+                ymin=-1.1,
+                ymax=1.1
+            ]
+            \addplot [blue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [red, thick, mark=none, smooth, samples=400, domain=0:1] {111819.288*x^9-500987.486*x^8+941671.207*x^7-964004.431*x^6+583394.102*x^5-211630.179*x^4+44379.6659*x^3-4855.25776*x^2+213.040344*x+0.0500000001};
+            \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
+                (0.0, 0.5)
+                (0.1111111111111111, 0.6527876096865393)
+                (0.2222222222222222, 0.984807753012208)
+                (0.3333333333333333, 0.8960254037844387)
+                (0.4444444444444444, 0.0)
+                (0.5555555555555556, 0.07)
+                (0.6666666666666666, -0.8660254037844384)
+                (0.7777777777777777, -0.7848077530122082)
+                (0.8888888888888888, -0.6427876096865396)
+                (1.0, 0.0)
+            };
+            \node [] at (axis cs:0.85, 0.9) {\tiny degree=9};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -1539,7 +1684,7 @@ Multi-class classification recipe:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Keras}
+\frametitle{Neural Networks in Keras}
 
 \begin{lstlisting}[language=Python]
 from keras.models import Sequential
@@ -1548,11 +1693,11 @@ from keras.regularizers import l2
 
 classes, features = 10, 200
 
-# Logistic regression model with two features
+# Fully-connected neural network
 model = Sequential()
-model.add(Dense(16, input_dim=features, &\textbf{activation="tanh"}&))
-model.add(Dense(16, &\textbf{kernel\_regularizer=l2(0.02)}&)
-model.add(&\textbf{Dropout(0.1)}&)
+model.add(Dense(16, input_dim=features, activation="tanh"))
+model.add(Dense(16, kernel_regularizer=l2(0.02))
+model.add(Dropout(0.1))
 model.add(Dense(classes, activation='softmax'))
 
 # Model compilation
@@ -1781,7 +1926,7 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Keras}
+\frametitle{CNNs in Keras}
 
 \begin{lstlisting}[language=Python]
 from keras.models import Sequential
@@ -1789,16 +1934,38 @@ from keras.layers import BatchNormalization, Conv2D,
                          Dense, MaxPooling2D
 from keras.regularizers import l2
 
-# Logistic regression model with two features
+# Convolutional neural network
+w, h, c = 128, 128, 1 # width, height, channels
 model = Sequential()
-&\textbf{model.add(Conv2D(16, (5, 5), padding="same")}&
-&\textbf{model.add(MaxPooling2D((2, 2), strides=(1, 1))}&
-&\textbf{model.add(BatchNormalization())}&
+model.add(Conv2D(16, (5, 5), padding="same", input_shape=(w, h, c))}
+model.add(MaxPooling2D((2, 2), strides=(1, 1))}
+model.add(BatchNormalization())}
 model.add(Dense(128)
 model.add(Dense(classes, activation='softmax'))
 
 # Model compilation
 model.compile(loss="categorical_crossentropy", optimizer="sgd")
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Keras Functional API}
+
+\begin{lstlisting}[language=Python]
+from keras.models import Model
+from keras.layers import Dense, Input
+
+features = 20
+data = Input(shape=(features,))
+
+# layers can be connected by calling the previous layer
+layer_1 = Dense(64)(data)
+layer_2 = Dense(64)(layer_1)
+predict = Dense(10, activation="softmax")(layer_2)
+
+# the model must be created manually
+model = Model(inputs=[data], outputs=[predict])
 \end{lstlisting}
 
 \end{frame}
