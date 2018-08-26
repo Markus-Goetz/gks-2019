@@ -1593,6 +1593,76 @@ Multi-class classification recipe:
 
 \begin{frame}
 \frametitle{L1- and L2-Norm}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item \textbf{L1-Norm}, also \textbf{LASSO}
+            \begin{itemize}
+                \item $\lVert w\rVert_1=(w_1+w_2+\dots +w_f)$
+                \item All weights contribute to loss
+                \item Encourages sparsity
+            \end{itemize}
+            \item \textbf{L2-Norm}, also \textbf{weight decay}
+            \begin{itemize}
+                \item $\lVert w\rVert^2_2=(w_1^2+w_2^2+\dots +w_f^2)$
+                \item Penalizes large weights
+                \item Discourages sparsity
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.7\textwidth, 
+                height=0.55\textheight, 
+                grid=both,
+                grid style={line width=.3pt, draw=hgfblue!10},
+                major grid style={line width=.3pt, draw=hgfblue!10},
+                minor tick num=3,
+                xlabel={$w_1$},
+                ylabel={$w_2$}, 
+                ticks=none,
+                axis x line=center,
+                axis y line=center,
+                xmin=-2,
+                xmax=2,
+                ymin=-2,
+                ymax=2
+            ]
+            \node[draw, thick, hgfblue, minimum height=0.6cm, minimum width=0.6cm, rotate=45] at (axis cs: 0,0) {};
+            \node[draw, thick, hgfblue, minimum height=1.2cm, minimum width=1.2cm, rotate=45] at (axis cs: 0,0) {};
+            \node[draw, thick, hgfblue, minimum height=1.8cm, minimum width=1.8cm, rotate=45] at (axis cs: 0,0) {};
+            \end{axis}
+            \end{tikzpicture}\\\medskip
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.7\textwidth, 
+                height=0.55\textheight, 
+                grid=both,
+                grid style={line width=.3pt, draw=hgfblue!10},
+                major grid style={line width=.3pt, draw=hgfblue!10},
+                minor tick num=3,
+                xlabel={$w_1$},
+                ylabel={$w_2$}, 
+                ticks=none,
+                axis x line=center,
+                axis y line=center,
+                xmin=-2,
+                xmax=2,
+                ymin=-2,
+                ymax=2
+            ]
+            \draw[thick, hgfblue] (axis cs: 0, 0) circle[radius=0.5];
+            \draw[thick, hgfblue] (axis cs: 0, 0) circle[radius=1.0];
+            \draw[thick, hgfblue] (axis cs: 0, 0) circle[radius=1.5];
+            \end{axis}
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -1733,6 +1803,19 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 \begin{frame}
 \frametitle{Discrete Convolution}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \centering
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item a
+        \end{itemize}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -1801,6 +1884,10 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \end{frame}
 
 \begin{frame}
+\frametitle{Convolutional Neural Network Pyramid}
+\end{frame}
+
+\begin{frame}
 \frametitle{Batch Normalization}
 \end{frame}
 
@@ -1816,7 +1903,86 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \label{subsec:network-architectures}
 
 \begin{frame}
-\frametitle{ImageNet (ILSVRC)}
+\frametitle{ImageNet Large Scale Visual Recognition Challenge (ILSVRC)}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \includegraphics[width=\linewidth]{ilsvrc.jpg}
+            \imageright{Oren Kraus}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item \textbf{Main image recognition benchmark}
+            \item Natural image collection, 14m samples
+            \item Presented in 2009
+            \item Since 2010, annual prediction competition
+            \begin{itemize}
+                \item Image classification
+                \item Object localization
+                \item Scene detection
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{ILSVRC Results}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-0.5,
+            xmax=6.5,
+            ybar,
+            xlabel = {\footnotesize$year$},
+            axis x line*=bottom,
+            axis y line*=left,
+            ylabel={\footnotesize$error\ rate$},
+            width=0.8\linewidth,
+            height=0.7\textheight,
+            xticklabel style={font=\tiny},
+            yticklabel style={font=\tiny},
+            bar width=5mm,
+            ymajorgrids=true,
+            xtick={0, 1, 2, 3, 4, 5, 6},
+            xticklabels={ILSVRC10, ILSVRC11, AlexNet, ILSVRC12, VGG, Inception, ResNet},
+            x tick label style={font=\tiny}
+        ]
+        \addplot+[hgfblue, mark=none, very thick, label=barplot] coordinates {
+            (0, 0.282)
+            (1, 0.258)
+            (2, 0.164)
+            (3, 0.117)
+            (4, 0.073)
+            (5, 0.067)
+            (6, 0.036)
+        };
+        \end{axis}
+        \begin{axis}[
+            ylabel={\footnotesize$layers$}, 
+            axis y line=right,
+            axis x line=none,
+            ymax=160,
+            width=0.8\linewidth,
+            height=0.7\textheight,
+            yticklabel style={font=\tiny},
+        ]
+        \addplot [hgfmatter, very thick] coordinates {
+            (0, 1)
+            (1, 1)
+            (2, 8)
+            (3, 8)
+            (4, 19)
+            (5, 22)
+            (6, 152)
+        };
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -2011,6 +2177,10 @@ model = Model(inputs=[data], outputs=[predict])
 
 \section{Regression}
 \label{sec:regression}
+
+\begin{frame}
+\frametitle{Abalone Dataset}
+\end{frame}
 
 \subsection{Exercise: Abalone}
 \label{subsec:regression-exercise}
