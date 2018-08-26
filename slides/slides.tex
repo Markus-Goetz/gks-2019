@@ -1589,6 +1589,33 @@ Multi-class classification recipe:
 
 \begin{frame}
 \frametitle{Regularization}
+
+Methods to avoid overfitting, reduced validation error, might increase train error
+\medskip
+\begin{itemize}
+    \item More data
+    \item Augment: generate artificially new samples (add noise, translate, ...)
+    \item Early stopping: monitoring of train and test loss, stop at optimum
+    \item Penalize large weights: add a penalty term
+    \item Dropout neurons
+    \item Batch Normalization neurons
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Penalty Terms}
+    
+    \begin{itemize}
+        \item Weights can become increasingly large, allowing overfitting
+        \item \textbf{Idea:} penalize large weights
+        \item Minimize function $J^{*}(w)=J(w)+\lambda\Omega (w)$
+        \item $\Omega (w)$ is measure of weight magnitude
+        \item $\lambda$ is scale for $\Omega (w)$
+        \begin{itemize}
+            \item $J(w)\gg\lambda\Omega (w)$---no regularization
+            \item $J(w)\ll\lambda\Omega (w)$---no training
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -2003,7 +2030,7 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
             \item Winner of ILSVRC 2014
             \item Repeating same kernels
             \item \textbf{Idea:} repeating Inception module
-            \item Core concepts Inception module
+            \item Core concept
             \begin{itemize}
                 \item Cheap non-linearities ($1\times 1$ convolution)
                 \item Different resolution scales
