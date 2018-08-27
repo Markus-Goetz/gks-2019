@@ -39,7 +39,7 @@
     framexleftmargin=1em,
     keywordstyle=\bfseries\color{hgfblue},
     stringstyle=\color{hgfgreen},
-    commentstyle=\itshape\color{hgfhealth},
+    commentstyle=\itshape\color{presentred},
     deletekeywords={compile},
     escapechar=\&
 }
@@ -66,6 +66,9 @@
 }
 
 \DeclareMathOperator*{\argmin}{arg\,min}
+
+\definecolor{presentred}{rgb}{1, 0, 0}
+\definecolor{presentblue}{rgb}{0, 0, 1}
 
 \AtBeginSection[]{
 \begin{frame}
@@ -189,8 +192,8 @@
                     \begin{axis}[
                         width=\linewidth, 
                         grid=both,
-                        grid style={line width=.3pt, draw=hgfblue!10},
-                        major grid style={line width=.3pt, draw=hgfblue!10},
+                        grid style={line width=.3pt, draw=presentblue!10},
+                        major grid style={line width=.3pt, draw=presentblue!10},
                         minor tick num=3,
                         xlabel={$x$},
                         ylabel={$y$}, 
@@ -202,7 +205,7 @@
                         ymin=-0.1,
                         ymax=1.6
                     ]
-                    \only<1->{\addplot [hgfblue, only marks, mark size=1pt] coordinates {
+                    \only<1->{\addplot [presentblue, only marks, mark size=1pt] coordinates {
                         (0.3, 0.10054215032765762)
                         (0.4263157894736842, 0.12363160260273953)
                         (0.5526315789473685, 0.2228985962683488)
@@ -224,10 +227,10 @@
                         (2.573684210526316, 1.2573605236570795)
                         (2.7, 1.2546989788028189)
                     };}
-                    \node<1-> at (axis cs:1.8,0.5) [hgfblue] {\footnotesize\emph{data}};
+                    \node<1-> at (axis cs:1.8,0.5) [presentblue] {\footnotesize\emph{data}};
                     
-                    \only<2->{\addplot [hgfhealth, thick, mark=none] {0.5*x};}
-                    \node<2-> at (axis cs:2.0,1.3) [hgfhealth] {\footnotesize\emph{model}};
+                    \only<2->{\addplot [presentred, thick, mark=none] {0.5*x};}
+                    \node<2-> at (axis cs:2.0,1.3) [presentred] {\footnotesize\emph{model}};
                     \end{axis} 
                 \end{tikzpicture}
             \end{figure}
@@ -270,8 +273,8 @@
                 width=\linewidth,
                 height=0.6\textheight, 
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
                 xlabel={$x$},
                 ylabel={$y$}, 
@@ -284,15 +287,15 @@
                 ymax=1.6
             ]
             
-            \addplot [hgfhealth, thick, mark=none, dashed, domain=0:4] {0.1*(x - 1.5) + 0.75};
-            \node at (axis cs:0.3,0.7) [hgfhealth] {\footnotesize$w_{1}$};
-            \addplot [hgfhealth, thick, mark=none, dashed, domain=0:4] {0.25*(x - 1.5) + 0.75)};
-            \node at (axis cs:0.3,0.35) [hgfhealth] {\footnotesize$w_{2}$};
-            \addplot [hgfhealth, thick, mark=none] {0.5*x};
-            \node at (axis cs:2.2,1.3) [hgfhealth] {\footnotesize$w_{s}$};
+            \addplot [presentred, thick, mark=none, dashed, domain=0:4] {0.1*(x - 1.5) + 0.75};
+            \node at (axis cs:0.3,0.7) [presentred] {\footnotesize$w_{1}$};
+            \addplot [presentred, thick, mark=none, dashed, domain=0:4] {0.25*(x - 1.5) + 0.75)};
+            \node at (axis cs:0.3,0.35) [presentred] {\footnotesize$w_{2}$};
+            \addplot [presentred, thick, mark=none] {0.5*x};
+            \node at (axis cs:2.2,1.3) [presentred] {\footnotesize$w_{s}$};
             
             
-            \addplot [hgfblue, only marks, mark size=1pt] coordinates {
+            \addplot [presentblue, only marks, mark size=1pt] coordinates {
                 (0.3, 0.10054215032765762)
                 (0.4263157894736842, 0.12363160260273953)
                 (0.5526315789473685, 0.2228985962683488)
@@ -314,7 +317,7 @@
                 (2.573684210526316, 1.2573605236570795)
                 (2.7, 1.2546989788028189)
             };
-            \node at (axis cs:1.8,0.5) [hgfblue] {\footnotesize\emph{data}};
+            \node at (axis cs:1.8,0.5) [presentblue] {\footnotesize\emph{data}};
             \end{axis} 
             \end{tikzpicture}
         \end{figure}
@@ -326,8 +329,8 @@
             width=\linewidth, 
             height=0.6\textheight, 
             grid=both,
-            grid style={line width=.3pt, draw=hgfblue!10},
-            major grid style={line width=.3pt, draw=hgfblue!10},
+            grid style={line width=.3pt, draw=presentblue!10},
+            major grid style={line width=.3pt, draw=presentblue!10},
             minor tick num=3,
             xlabel={$w$},
             ylabel={$J$}, 
@@ -341,33 +344,33 @@
             ]
             % domain=0.25:2.75
             \addplot [black, thick, mark=none, smooth, samples=50, domain=0.3:2.7] {0.9*(x-1.5)^2 + 0.2};
-            \addplot [hgfhealth, only marks, mark size=2pt] coordinates {
+            \addplot [presentred, only marks, mark size=2pt] coordinates {
                 (1.5, 0.2)
                 (1.0, 0.425)
                 (0.5, 1.1)
             };
-            \addplot [hgfhealth, mark=none] coordinates {
+            \addplot [presentred, mark=none] coordinates {
                 (1.5, 0.05)
                 (1.5, 0.15)
             };
-            \addplot [hgfhealth, mark=none] coordinates {
+            \addplot [presentred, mark=none] coordinates {
                 (1.0, 0.05)
                 (1.0, 0.37)
             };
-            \addplot [hgfhealth, mark=none] coordinates {
+            \addplot [presentred, mark=none] coordinates {
                 (0.5, 0.05)
                 (0.5, 1.00)
             };
-            \addplot [hgfblue, mark=none] coordinates {
+            \addplot [presentblue, mark=none] coordinates {
                 (0.53, 0.95)
                 (0.53, 0.43)
                 (0.93, 0.43)
             };
-            \draw [->, hgfhealth](axis cs:0.57,1.07)--(axis cs:0.98,0.48);
-            \node at (axis cs:1.20,0.8) [hgfblue] {$lr\frac{dJ}{dw}$};
-            \node at (axis cs:0.7,0.1) [hgfhealth] {\footnotesize$w_{1}$};
-            \node at (axis cs:1.2,0.1) [hgfhealth] {\footnotesize$w_{2}$};
-            \node at (axis cs:1.7,0.1) [hgfhealth] {\footnotesize$w_{s}$};
+            \draw [->, presentred](axis cs:0.57,1.07)--(axis cs:0.98,0.48);
+            \node at (axis cs:1.20,0.8) [presentblue] {$lr\frac{dJ}{dw}$};
+            \node at (axis cs:0.7,0.1) [presentred] {\footnotesize$w_{1}$};
+            \node at (axis cs:1.2,0.1) [presentred] {\footnotesize$w_{2}$};
+            \node at (axis cs:1.7,0.1) [presentred] {\footnotesize$w_{s}$};
             \end{axis} 
             \end{tikzpicture}
         \end{figure}
@@ -428,7 +431,7 @@ x_{i,n}\\
         \includegraphics[width=0.5\linewidth]{jupyter.png} %
     };
     % show origin
-    \draw [line width=0.6mm, hgfhealth] (7.05, 4.05) ellipse (0.5 and 0.25);
+    \draw [line width=0.6mm, presentred] (7.05, 4.05) ellipse (0.5 and 0.25);
     \end{tikzpicture}
 \end{figure}
 
@@ -452,8 +455,8 @@ x_{i,n}\\
                 \begin{axis}[
                     width=\linewidth, 
                     grid=both,
-                    grid style={line width=.3pt, draw=hgfblue!10},
-                    major grid style={line width=.3pt, draw=hgfblue!10},
+                    grid style={line width=.3pt, draw=presentblue!10},
+                    major grid style={line width=.3pt, draw=presentblue!10},
                     minor tick num=3,
                     xlabel={$x_1$},
                     ylabel={$x_2$}, 
@@ -465,7 +468,7 @@ x_{i,n}\\
                     ymin=-0.1,
                     ymax=2.0
                 ]
-                \addplot [hgfblue, only marks, mark size=2pt, mark=triangle*] coordinates {
+                \addplot [presentblue, only marks, mark size=2pt, mark=triangle*] coordinates {
                     (0.3405210822112612, 0.8733467370280228)
                     (0.6417180817230281, 0.4966306166288442)
                     (0.31236861944953176, 0.6121119482760103)
@@ -497,7 +500,7 @@ x_{i,n}\\
                     (0.41302308334280347, 0.30372338532728305)
                     (0.7456467692023212, 0.5026216907475388)
                 };
-                \addplot [hgfhealth, only marks, mark size=2pt, mark=square*] coordinates {
+                \addplot [presentred, only marks, mark size=2pt, mark=square*] coordinates {
                     (1.7706837759950487, 1.808884456339976)
                     (1.6097673166601565, 1.0910700963071096)
                     (1.8311427531366666, 1.043397970524071)
@@ -547,8 +550,8 @@ x_{i,n}\\
             \begin{axis}[
                 width=\linewidth, 
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
                 xlabel={$x$},
                 ylabel={$y$}, 
@@ -559,9 +562,9 @@ x_{i,n}\\
                 ymin=-0.1,
                 ymax=1.2
             ]
-            \addplot [hgfblue, mark=none, smooth, samples=50] {1/(1 + e^-x)};
+            \addplot [presentblue, mark=none, smooth, samples=50] {1/(1 + e^-x)};
             \addplot [black, dashed, mark=none] {1};
-            \node at (axis cs:2.5,0.5) [hgfblue] {\footnotesize$y=sig(x)$};
+            \node at (axis cs:2.5,0.5) [presentblue] {\footnotesize$y=sig(x)$};
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -585,8 +588,8 @@ x_{i,n}\\
         \begin{itemize}
             \item \textbf{Data set} must be mapped
             \begin{itemize}
-                \item \tikz{\node[fill=hgfhealth, rectangle ,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 0$
-                \item \tikz{\node[fill=hgfblue, isosceles triangle,isosceles triangle stretches,shape border rotate=90,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 1$
+                \item \tikz{\node[fill=presentred, rectangle ,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 0$
+                \item \tikz{\node[fill=presentblue, isosceles triangle,isosceles triangle stretches,shape border rotate=90,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 1$
             \end{itemize}
             \item \textbf{Model:} $h=sig(wx)=\frac{1}{1+e^{-wx}}$
             \item \textbf{Loss function:} $J(w)=MSE(w)=(y-\hat{y})^2$\\
@@ -601,8 +604,8 @@ x_{i,n}\\
             \begin{axis}[
                 width=\linewidth, 
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
                 xlabel={$x_1$},
                 ylabel={$x_2$}, 
@@ -614,7 +617,7 @@ x_{i,n}\\
                 ymin=-0.1,
                 ymax=2.0
             ]
-            \addplot [hgfblue, only marks, mark size=2pt, mark=triangle*] coordinates {
+            \addplot [presentblue, only marks, mark size=2pt, mark=triangle*] coordinates {
                 (0.3405210822112612, 0.8733467370280228)
                 (0.6417180817230281, 0.4966306166288442)
                 (0.31236861944953176, 0.6121119482760103)
@@ -646,7 +649,7 @@ x_{i,n}\\
                 (0.41302308334280347, 0.30372338532728305)
                 (0.7456467692023212, 0.5026216907475388)
             };
-            \addplot [hgfhealth, only marks, mark size=2pt, mark=square*] coordinates {
+            \addplot [presentred, only marks, mark size=2pt, mark=square*] coordinates {
                 (1.7706837759950487, 1.808884456339976)
                 (1.6097673166601565, 1.0910700963071096)
                 (1.8311427531366666, 1.043397970524071)
@@ -765,8 +768,8 @@ model.fit(x, y, epochs=10)
         \begin{itemize}
             \item \textbf{Data set} must be mapped
             \begin{itemize}
-                \item \tikz{\node[fill=hgfhealth, rectangle ,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 0$
-                \item \tikz{\node[fill=hgfblue, isosceles triangle,isosceles triangle stretches,shape border rotate=90,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 1$
+                \item \tikz{\node[fill=presentred, rectangle ,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 0$
+                \item \tikz{\node[fill=presentblue, isosceles triangle,isosceles triangle stretches,shape border rotate=90,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 1$
             \end{itemize}
             \item \textbf{Model:} $h=sig(wx)=\frac{1}{1+e^{-wx}}$
             \item \textbf{Loss function:} $J(w)=MSE(w)=(y-\hat{y})^2$\\
@@ -781,8 +784,8 @@ model.fit(x, y, epochs=10)
             \begin{axis}[
             width=\linewidth, 
             grid=both,
-            grid style={line width=.3pt, draw=hgfblue!10},
-            major grid style={line width=.3pt, draw=hgfblue!10},
+            grid style={line width=.3pt, draw=presentblue!10},
+            major grid style={line width=.3pt, draw=presentblue!10},
             minor tick num=3,
             xlabel={$x_1$},
             ylabel={$x_2$}, 
@@ -794,7 +797,7 @@ model.fit(x, y, epochs=10)
             ymin=-0.1,
             ymax=2.0
             ]
-            \addplot [hgfblue, only marks, mark size=2pt, mark=triangle*] coordinates {
+            \addplot [presentblue, only marks, mark size=2pt, mark=triangle*] coordinates {
                 (0.3405210822112612, 0.8733467370280228)
                 (0.6417180817230281, 0.4966306166288442)
                 (0.31236861944953176, 0.6121119482760103)
@@ -826,7 +829,7 @@ model.fit(x, y, epochs=10)
                 (0.41302308334280347, 0.30372338532728305)
                 (0.7456467692023212, 0.5026216907475388)
             };
-            \addplot [hgfhealth, only marks, mark size=2pt, mark=square*] coordinates {
+            \addplot [presentred, only marks, mark size=2pt, mark=square*] coordinates {
                 (1.7706837759950487, 1.808884456339976)
                 (1.6097673166601565, 1.0910700963071096)
                 (1.8311427531366666, 1.043397970524071)
@@ -881,8 +884,8 @@ model.fit(x, y, epochs=10)
             \begin{axis}[
                 width=0.9\linewidth,
                 grid=major,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 %minor tick num=2,
                 xlabel={$x_1$},
                 ylabel={$x_2$},
@@ -891,10 +894,10 @@ model.fit(x, y, epochs=10)
                 ymin=-0.1,
                 ymax=1.1
             ]
-            \node[draw, circle, fill=hgfhealth,  radius=0.3cm] at (1, 1) {};
-            \node[draw, circle, fill=hgfhealth,  radius=0.3cm] at (0, 0) {};
-            \node[draw, circle, fill=hgfblue, radius=0.3cm] at (1, 0) {};
-            \node[draw, circle, fill=hgfblue, radius=0.3cm] at (0, 1) {};
+            \node[draw, circle, fill=presentred,  radius=0.3cm] at (1, 1) {};
+            \node[draw, circle, fill=presentred,  radius=0.3cm] at (0, 0) {};
+            \node[draw, circle, fill=presentblue, radius=0.3cm] at (1, 0) {};
+            \node[draw, circle, fill=presentblue, radius=0.3cm] at (0, 1) {};
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -922,8 +925,8 @@ model.fit(x, y, epochs=10)
             \begin{axis}[
                 width=0.8\linewidth,
                 grid=major,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 xlabel={$x_1$},
                 ylabel={$x_2$},
                 xmin=-0.2,
@@ -931,11 +934,11 @@ model.fit(x, y, epochs=10)
                 ymin=-0.2,
                 ymax=1.2
             ]
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (1, 1) {};
-            \node[draw, circle, fill=hgfhealth,  radius=0.05cm] at (0, 0) {};
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (1, 0) {};
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (0, 1) {};
-            \addplot[hgfhealth, thick, dashed, mark=none] {-x + 0.5};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (1, 1) {};
+            \node[draw, circle, fill=presentred,  radius=0.05cm] at (0, 0) {};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (1, 0) {};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (0, 1) {};
+            \addplot[presentred, thick, dashed, mark=none] {-x + 0.5};
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -949,8 +952,8 @@ model.fit(x, y, epochs=10)
             \begin{axis}[
                 width=0.8\linewidth,
                 grid=major,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 xlabel={$x_1$},
                 yticklabels={,,},
                 xmin=-0.2,
@@ -958,11 +961,11 @@ model.fit(x, y, epochs=10)
                 ymin=-0.2,
                 ymax=1.2,
             ]
-            \node[draw, circle, fill=hgfhealth,  radius=0.05cm] at (1, 1) {};
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (0, 0) {};
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (1, 0) {};
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (0, 1) {};
-            \addplot[hgfhealth, thick, dashed, mark=none] {-x + 1.5};
+            \node[draw, circle, fill=presentred,  radius=0.05cm] at (1, 1) {};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (0, 0) {};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (1, 0) {};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (0, 1) {};
+            \addplot[presentred, thick, dashed, mark=none] {-x + 1.5};
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -976,8 +979,8 @@ model.fit(x, y, epochs=10)
             \begin{axis}[
                 width=0.8\linewidth,
                 grid=major,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 xlabel={$x_1$},
                 yticklabels={,,},
                 xmin=-0.2,
@@ -985,11 +988,11 @@ model.fit(x, y, epochs=10)
                 ymin=-0.2,
                 ymax=1.2,
             ]
-            \node[draw, circle, fill=hgfblue, radius=0.05cm] at (1, 1) {};
-            \node[draw, circle, fill=hgfhealth,  radius=0.05cm] at (0, 0) {};
-            \node[draw, circle, fill=hgfhealth,  radius=0.05cm] at (1, 0) {};
-            \node[draw, circle, fill=hgfhealth,  radius=0.05cm] at (0, 1) {};
-            \addplot[hgfblue, thick, dashed, mark=none] {-x + 1.5};
+            \node[draw, circle, fill=presentblue, radius=0.05cm] at (1, 1) {};
+            \node[draw, circle, fill=presentred,  radius=0.05cm] at (0, 0) {};
+            \node[draw, circle, fill=presentred,  radius=0.05cm] at (1, 0) {};
+            \node[draw, circle, fill=presentred,  radius=0.05cm] at (0, 1) {};
+            \addplot[presentblue, thick, dashed, mark=none] {-x + 1.5};
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -1109,17 +1112,17 @@ model.fit(x, y, epochs=10)
             
             \node[draw, circle, thick, minimum size=0.8cm] (output) at (2, 0) {\footnotesize$\hat{y}$};
             
-            \draw[hgfhealth, ->, >=stealth, thick] (hidden1)--(input1.east);
-            \draw[hgfhealth, ->, >=stealth, thick] (hidden2)--(input1);
-            \draw[hgfhealth, ->, >=stealth, thick] (hidden3)--(input1);
+            \draw[presentred, ->, >=stealth, thick] (hidden1)--(input1.east);
+            \draw[presentred, ->, >=stealth, thick] (hidden2)--(input1);
+            \draw[presentred, ->, >=stealth, thick] (hidden3)--(input1);
             
-            \draw[hgfhealth, ->, >=stealth, thick] (hidden1)--(input2);
-            \draw[hgfhealth, ->, >=stealth, thick] (hidden2)--(input2);
-            \draw[hgfhealth, ->, >=stealth, thick] (hidden3)--(input2);
+            \draw[presentred, ->, >=stealth, thick] (hidden1)--(input2);
+            \draw[presentred, ->, >=stealth, thick] (hidden2)--(input2);
+            \draw[presentred, ->, >=stealth, thick] (hidden3)--(input2);
             
-            \draw[hgfhealth, ->, >=stealth, thick] (output)--(hidden1);
-            \draw[hgfhealth, ->, >=stealth, thick] (output)--(hidden2);
-            \draw[hgfhealth, ->, >=stealth, thick] (output)--(hidden3);
+            \draw[presentred, ->, >=stealth, thick] (output)--(hidden1);
+            \draw[presentred, ->, >=stealth, thick] (output)--(hidden2);
+            \draw[presentred, ->, >=stealth, thick] (output)--(hidden3);
             
             \node at (-2, -2.5) {\footnotesize \textbf{Input}};
             \node at ( 0, -2.5) {\footnotesize \textbf{Hidden}};
@@ -1145,8 +1148,8 @@ model.fit(x, y, epochs=10)
             title=sigmoid,
             width=0.3\linewidth, 
             grid=major,
-            grid style={dashed, line width=.3pt, draw=hgfblue!10},
-            major grid style={line width=.3pt, draw=hgfblue!10},
+            grid style={dashed, line width=.3pt, draw=presentblue!10},
+            major grid style={line width=.3pt, draw=presentblue!10},
             xlabel={$x$},
             ylabel={$a(x)$},
             xmin=-2,
@@ -1154,15 +1157,15 @@ model.fit(x, y, epochs=10)
             ymin=-2,
             ymax=2
         ]
-        \addplot [hgfblue, thick, mark=none, smooth, samples=50] {1/(1+e^(-x))};
+        \addplot [presentblue, thick, mark=none, smooth, samples=50] {1/(1+e^(-x))};
         \end{axis} 
     \end{tikzpicture}\begin{tikzpicture}
         \begin{axis}[
             title=tanh,
             width=0.3\linewidth, 
             grid=major,
-            grid style={dashed, line width=.3pt, draw=hgfblue!10},
-            major grid style={line width=.3pt, draw=hgfblue!10},
+            grid style={dashed, line width=.3pt, draw=presentblue!10},
+            major grid style={line width=.3pt, draw=presentblue!10},
             yticklabels={,,},
             xlabel={$x$},
             xmin=-2,
@@ -1170,15 +1173,15 @@ model.fit(x, y, epochs=10)
             ymin=-2,
             ymax=2
         ]
-    \addplot [hgfblue, thick, mark=none, smooth, samples=50] {tanh(x)};
+    \addplot [presentblue, thick, mark=none, smooth, samples=50] {tanh(x)};
     \end{axis}
     \end{tikzpicture}\begin{tikzpicture}
         \begin{axis}[
             title=ReLU,
             width=0.3\linewidth, 
             grid=major,
-            grid style={dashed, line width=.3pt, draw=hgfblue!10},
-            major grid style={line width=.3pt, draw=hgfblue!10},
+            grid style={dashed, line width=.3pt, draw=presentblue!10},
+            major grid style={line width=.3pt, draw=presentblue!10},
             yticklabels={,,},
             xlabel={$x$},
             xmin=-2,
@@ -1186,15 +1189,15 @@ model.fit(x, y, epochs=10)
             ymin=-2,
             ymax=2
         ]
-        \addplot [hgfblue, thick, mark=none, domain=-3:3] {max(0, x)};
+        \addplot [presentblue, thick, mark=none, domain=-3:3] {max(0, x)};
         \end{axis}
     \end{tikzpicture}\begin{tikzpicture}
         \begin{axis}[
             title=SeLU,
             width=0.3\linewidth, 
             grid=major,
-            grid style={dashed, line width=.3pt, draw=hgfblue!10},
-            major grid style={line width=.3pt, draw=hgfblue!10},
+            grid style={dashed, line width=.3pt, draw=presentblue!10},
+            major grid style={line width=.3pt, draw=presentblue!10},
             yticklabels={,,},
             xlabel={$x$},
             xmin=-2,
@@ -1202,8 +1205,8 @@ model.fit(x, y, epochs=10)
             ymin=-2,
             ymax=2
         ]
-        \addplot [hgfblue, thick, mark=none, smooth, samples=50, domain=-3:0]{1.0507 * 1.6732 * (e^x - 1)};
-        \addplot [hgfblue, thick, mark=none, smooth, samples=50, domain=0:3]{x};
+        \addplot [presentblue, thick, mark=none, smooth, samples=50, domain=-3:0]{1.0507 * 1.6732 * (e^x - 1)};
+        \addplot [presentblue, thick, mark=none, smooth, samples=50, domain=0:3]{x};
         \end{axis}
     \end{tikzpicture}
     \end{figure}
@@ -1249,14 +1252,14 @@ A feed-forward neural network with a linear output and at least one hidden layer
             
             \node[draw, thick, rectangle, align=center, text width=1.6cm, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (node14) at (1.5, 3) {\tiny hand-designed\\[-5pt] program};
             \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm] (node13) at (1.5, 2) {\tiny hand-designed\\[-5pt]\tiny features};
-            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfhealth!30] (node12) at (1.5, 1) {\tiny features};
-            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfhealth!30] (node11) at (1.5, 0) {\tiny simple features};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=presentred!30] (node12) at (1.5, 1) {\tiny features};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=presentred!30] (node11) at (1.5, 0) {\tiny simple features};
             
-            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfhealth!30] (node23) at (4, 2) {\tiny mapping};
-            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfhealth!30] (node22) at (4, 1) {\tiny mapping};
-            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfhealth!30] (node21) at (4, 0) {\tiny abstract\\[-5pt]\tiny features};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=presentred!30] (node23) at (4, 2) {\tiny mapping};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=presentred!30] (node22) at (4, 1) {\tiny mapping};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=presentred!30] (node21) at (4, 0) {\tiny abstract\\[-5pt]\tiny features};
             
-            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=hgfhealth!30] (node31) at (6.5, 0) {\tiny mapping};
+            \node[draw, thick, rectangle, align=center, minimum width=1.8cm, minimum height=0.8cm, inner sep=0cm, fill=presentred!30] (node31) at (6.5, 0) {\tiny mapping};
             
             \node[draw, thick, circle, black] (output4) at (3.9, 3) {};
             \node[draw, thick, circle, black] (output3) at (6.4, 2) {};
@@ -1285,7 +1288,7 @@ A feed-forward neural network with a linear output and at least one hidden layer
             \node[align=right] at (8.45, 2) {\tiny\bfseries Machine learning};
             \node[align=right] at (8.55, 1.25) {\tiny\bfseries Deep learning};
             
-            \node[fill=hgfhealth!30] at (3.18, -0.75) {};
+            \node[fill=presentred!30] at (3.18, -0.75) {};
             \node[] at (4.18, -0.75) {\tiny machine learned};
         \end{tikzpicture}
     \end{figure}
@@ -1312,9 +1315,9 @@ A feed-forward neural network with a linear output and at least one hidden layer
             \node[draw, circle, thick, minimum size=0.8cm] (hidden3) at (0, 0.5) {\footnotesize$h_3$};
             \node[draw, circle, thick, minimum size=0.8cm] (hidden4) at (0, 1.5) {\footnotesize$h_4$};
             
-            \node[draw, hgfhealth, circle, thick, minimum size=0.8cm] (output1) at (2, -1) {\footnotesize$\hat{y}_1$};
-            \node[draw, hgfhealth, circle, thick, minimum size=0.8cm] (output2) at (2, 0) {\footnotesize$\hat{y}_2$};
-            \node[draw, hgfhealth, circle, thick, minimum size=0.8cm] (output3) at (2, 1) {\footnotesize$\hat{y}_3$};
+            \node[draw, presentred, circle, thick, minimum size=0.8cm] (output1) at (2, -1) {\footnotesize$\hat{y}_1$};
+            \node[draw, presentred, circle, thick, minimum size=0.8cm] (output2) at (2, 0) {\footnotesize$\hat{y}_2$};
+            \node[draw, presentred, circle, thick, minimum size=0.8cm] (output3) at (2, 1) {\footnotesize$\hat{y}_3$};
             
             \draw[->, >=stealth, thick] (input1)--(hidden1);
             \draw[->, >=stealth, thick] (input1)--(hidden2);
@@ -1405,8 +1408,8 @@ Multi-class classification recipe:
                 width=0.9\linewidth, 
                 height=0.48\textheight,
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=2,
                 ticks=none,
                 xticklabels={,,},
@@ -1416,8 +1419,8 @@ Multi-class classification recipe:
                 ymin=-1.1,
                 ymax=1.1
             ]
-            \addplot [hgfblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
-            \addplot [hgfhealth, thick, mark=none] {0.036};
+            \addplot [presentblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [presentred, thick, mark=none] {0.036};
             \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
                 (0.0, 0.5)
                 (0.1111111111111111, 0.6527876096865393)
@@ -1439,8 +1442,8 @@ Multi-class classification recipe:
                 width=0.9\linewidth, 
                 height=0.48\textheight,
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=2,
                 ticks=none,
                 xticklabels={,,},
@@ -1451,8 +1454,8 @@ Multi-class classification recipe:
                 ymin=-1.1,
                 ymax=1.1
             ]
-            \addplot [hgfblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
-            \addplot [hgfhealth, thick, mark=none, smooth, samples=200, domain=0:1] {18.6580627*x^3-28.0637985*x^2+9.40931656*x+0.0228460191};
+            \addplot [presentblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [presentred, thick, mark=none, smooth, samples=200, domain=0:1] {18.6580627*x^3-28.0637985*x^2+9.40931656*x+0.0228460191};
             \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
                 (0.0, 0.5)
                 (0.1111111111111111, 0.6527876096865393)
@@ -1477,8 +1480,8 @@ Multi-class classification recipe:
                 width=0.9\linewidth, 
                 height=0.48\textheight,
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=2,
                 ticks=none,
                 xticklabels={,,},
@@ -1487,8 +1490,8 @@ Multi-class classification recipe:
                 ymin=-1.1,
                 ymax=1.1
             ]
-            \addplot [hgfblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
-            \addplot [hgfhealth, thick, mark=none, smooth, samples=10] {-1.28635944*x+0.67917972};
+            \addplot [presentblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [presentred, thick, mark=none, smooth, samples=10] {-1.28635944*x+0.67917972};
             \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
                 (0.0, 0.5)
                 (0.1111111111111111, 0.6527876096865393)
@@ -1510,8 +1513,8 @@ Multi-class classification recipe:
                 width=0.9\linewidth, 
                 height=0.48\textheight,
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=2,
                 ticks=none,
                 xticklabels={,,},
@@ -1521,8 +1524,8 @@ Multi-class classification recipe:
                 ymin=-1.1,
                 ymax=1.1
             ]
-            \addplot [hgfblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
-            \addplot [hgfhealth, thick, mark=none, smooth, samples=400, domain=0:1] {111819.288*x^9-500987.486*x^8+941671.207*x^7-964004.431*x^6+583394.102*x^5-211630.179*x^4+44379.6659*x^3-4855.25776*x^2+213.040344*x+0.0500000001};
+            \addplot [presentblue, thick, mark=none, smooth, samples=200] {sin(deg(2*pi*x))};
+            \addplot [presentred, thick, mark=none, smooth, samples=400, domain=0:1] {111819.288*x^9-500987.486*x^8+941671.207*x^7-964004.431*x^6+583394.102*x^5-211630.179*x^4+44379.6659*x^3-4855.25776*x^2+213.040344*x+0.0500000001};
             \addplot [black, only marks, mark size=1pt, mark=*] coordinates {
                 (0.0, 0.5)
                 (0.1111111111111111, 0.6527876096865393)
@@ -1553,8 +1556,8 @@ Multi-class classification recipe:
             \begin{axis}[
                 width=\linewidth, 
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
                 xlabel={$epoch$},
                 ylabel={$J$}, 
@@ -1567,11 +1570,11 @@ Multi-class classification recipe:
                 ymax=1.6
             ]
             % domain=0.25:2.75
-            \addplot [hgfhealth, thick, mark=none, smooth, samples=50, domain=0:3] {e^(-4*(x-0.6)) + 0.1 + 0.2*x};
-            \addplot [hgfblue, thick, mark=none, smooth, samples=50, domain=0:3] {e^(-4*(x-0.4)) + 0.2};
+            \addplot [presentred, thick, mark=none, smooth, samples=50, domain=0:3] {e^(-4*(x-0.6)) + 0.1 + 0.2*x};
+            \addplot [presentblue, thick, mark=none, smooth, samples=50, domain=0:3] {e^(-4*(x-0.4)) + 0.2};
             \draw[<->, black, >=stealth, thick] (axis cs:1.3,0.25)--(axis cs:1.3,0.4);
-            \node at (axis cs:2.5,0.8) [hgfhealth]  {\footnotesize Test loss};
-            \node at (axis cs:2.5,0.3) [hgfblue] {\footnotesize Training loss};
+            \node at (axis cs:2.5,0.8) [presentred]  {\footnotesize Test loss};
+            \node at (axis cs:2.5,0.3) [presentblue] {\footnotesize Training loss};
             \node at (axis cs:1.35,0.55) [black] {\footnotesize Optimum};
             \end{axis} 
             \end{tikzpicture}
@@ -1646,8 +1649,8 @@ Methods to avoid overfitting, reduced validation error, might increase train err
                 width=0.7\textwidth, 
                 height=0.55\textheight, 
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
                 xlabel={$w_1$},
                 ylabel={$w_2$}, 
@@ -1659,9 +1662,9 @@ Methods to avoid overfitting, reduced validation error, might increase train err
                 ymin=-2,
                 ymax=2
             ]
-            \node[draw, thick, hgfblue, minimum height=0.6cm, minimum width=0.6cm, rotate=45] at (axis cs: 0,0) {};
-            \node[draw, thick, hgfblue, minimum height=1.2cm, minimum width=1.2cm, rotate=45] at (axis cs: 0,0) {};
-            \node[draw, thick, hgfblue, minimum height=1.8cm, minimum width=1.8cm, rotate=45] at (axis cs: 0,0) {};
+            \node[draw, thick, presentblue, minimum height=0.6cm, minimum width=0.6cm, rotate=45] at (axis cs: 0,0) {};
+            \node[draw, thick, presentblue, minimum height=1.2cm, minimum width=1.2cm, rotate=45] at (axis cs: 0,0) {};
+            \node[draw, thick, presentblue, minimum height=1.8cm, minimum width=1.8cm, rotate=45] at (axis cs: 0,0) {};
             \end{axis}
             \end{tikzpicture}\\\medskip
             \begin{tikzpicture}
@@ -1669,8 +1672,8 @@ Methods to avoid overfitting, reduced validation error, might increase train err
                 width=0.7\textwidth, 
                 height=0.55\textheight, 
                 grid=both,
-                grid style={line width=.3pt, draw=hgfblue!10},
-                major grid style={line width=.3pt, draw=hgfblue!10},
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
                 xlabel={$w_1$},
                 ylabel={$w_2$}, 
@@ -1682,9 +1685,9 @@ Methods to avoid overfitting, reduced validation error, might increase train err
                 ymin=-2,
                 ymax=2
             ]
-            \draw[thick, hgfblue] (axis cs: 0, 0) circle[radius=0.5];
-            \draw[thick, hgfblue] (axis cs: 0, 0) circle[radius=1.0];
-            \draw[thick, hgfblue] (axis cs: 0, 0) circle[radius=1.5];
+            \draw[thick, presentblue] (axis cs: 0, 0) circle[radius=0.5];
+            \draw[thick, presentblue] (axis cs: 0, 0) circle[radius=1.0];
+            \draw[thick, presentblue] (axis cs: 0, 0) circle[radius=1.5];
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -1826,6 +1829,13 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 \begin{frame}
 \frametitle{Computer Vision}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -1876,20 +1886,20 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
             \centering
             \resizebox{!}{0.7\textheight}{
             \begin{tikzpicture}
-                \node[draw, fill=hgfblue!30, rectangle, minimum width=1cm, minimum height=1cm] (1) at (0,0) {1};
-                \node[draw, fill=hgfblue!30, rectangle, minimum width=1cm, minimum height=1cm] (2) at (1,0) {1};
-                \node[draw, fill=hgfblue!30, rectangle, minimum width=1cm, minimum height=1cm] (3) at (0,1) {4};
-                \node[draw, fill=hgfblue!30, rectangle, minimum width=1cm, minimum height=1cm] (4) at (1,1) {6};
+                \node[draw, fill=presentblue!30, rectangle, minimum width=1cm, minimum height=1cm] (1) at (0,0) {1};
+                \node[draw, fill=presentblue!30, rectangle, minimum width=1cm, minimum height=1cm] (2) at (1,0) {1};
+                \node[draw, fill=presentblue!30, rectangle, minimum width=1cm, minimum height=1cm] (3) at (0,1) {4};
+                \node[draw, fill=presentblue!30, rectangle, minimum width=1cm, minimum height=1cm] (4) at (1,1) {6};
                 
                 \node[draw, fill=hgfgreen!30, rectangle, minimum width=1cm, minimum height=1cm] (5) at (2,0) {2};
                 \node[draw, fill=hgfgreen!30, rectangle, minimum width=1cm, minimum height=1cm] (6) at (3,0) {4};
                 \node[draw, fill=hgfgreen!30, rectangle, minimum width=1cm, minimum height=1cm] (7) at (2,1) {7};
                 \node[draw, fill=hgfgreen!30, rectangle, minimum width=1cm, minimum height=1cm] (8) at (3,1) {8};
                 
-                \node[draw, fill=hgfhealth!30, rectangle, minimum width=1cm, minimum height=1cm] (9) at (0,2) {3};
-                \node[draw, fill=hgfhealth!30, rectangle, minimum width=1cm, minimum height=1cm] (10) at (1,2) {2};
-                \node[draw, fill=hgfhealth!30, rectangle, minimum width=1cm, minimum height=1cm] (11) at (0,3) {1};
-                \node[draw, fill=hgfhealth!30, rectangle, minimum width=1cm, minimum height=1cm] (12) at (1,3) {1};
+                \node[draw, fill=presentred!30, rectangle, minimum width=1cm, minimum height=1cm] (9) at (0,2) {3};
+                \node[draw, fill=presentred!30, rectangle, minimum width=1cm, minimum height=1cm] (10) at (1,2) {2};
+                \node[draw, fill=presentred!30, rectangle, minimum width=1cm, minimum height=1cm] (11) at (0,3) {1};
+                \node[draw, fill=presentred!30, rectangle, minimum width=1cm, minimum height=1cm] (12) at (1,3) {1};
                 
                 \node[draw, fill=hgfaero!30, rectangle, minimum width=1cm, minimum height=1cm] (13) at (2,2) {1};
                 \node[draw, fill=hgfaero!30, rectangle, minimum width=1cm, minimum height=1cm] (14) at (3,2) {0};
@@ -1897,9 +1907,9 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
                 \node[draw, fill=hgfaero!30, rectangle, minimum width=1cm, minimum height=1cm] (16) at (3,3) {4};
                 
                 
-                \node[draw, fill=hgfblue!30, rectangle, minimum width=1cm, minimum height=1cm] (13) at (1,-3) {6};
+                \node[draw, fill=presentblue!30, rectangle, minimum width=1cm, minimum height=1cm] (13) at (1,-3) {6};
                 \node[draw, fill=hgfgreen!30, rectangle, minimum width=1cm, minimum height=1cm] (14) at (2,-3) {8};
-                \node[draw, fill=hgfhealth!30, rectangle, minimum width=1cm, minimum height=1cm] (15) at (1,-2) {3};
+                \node[draw, fill=presentred!30, rectangle, minimum width=1cm, minimum height=1cm] (15) at (1,-2) {3};
                 \node[draw, fill=hgfaero!30, rectangle, minimum width=1cm, minimum height=1cm] (16) at (2,-2) {4};
                 
                 \draw[->, >=stealth, thick] (1.5,-0.6)--(1.5,-1.4);
@@ -1912,18 +1922,214 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 \begin{frame}
 \frametitle{Convolutional Neural Network Pyramid}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pyramid.png}
+    \imageright{Medium}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Batch Normalization}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item \textbf{Idea:} standardize layer outputs
+            \item Training time
+            \begin{itemize}
+                \item Calculate batch mean $\mu_B$ and standard deviation $\sigma_B$
+                \item Track rolling values $\mu$ and $\sigma$
+                \item Normalize by $\frac{x-\mu_B}{\sigma_B}$
+            \end{itemize}
+            \item Prediction time
+            \begin{itemize}
+                \item Track $\mu_B$ and $\sigma_B$ for covariate shift
+                \item Add one degree of freedom
+            \end{itemize}
+            \item Regularizes network
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=\linewidth, 
+                grid=both,
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
+                minor tick num=3,
+                xlabel={$x$},
+                ylabel={$\hat{y}$}, 
+                axis x line=center,
+                axis y line=center,
+                ticks=none,
+                xmin=-5,
+                xmax=5,
+                ymin=0.0,
+                ymax=6.0,
+            ]
+            \addplot [presentblue, mark=none, thick, smooth, samples=100, domain=-5:1] {e^(-(x+0.5) ^2)-sin(deg(x+0.5)) + cos(1.69*deg(x+0.5)) + 1.5};
+            \addplot [presentblue, dashed, mark=none, thick, smooth, samples=100,domain=-3:4] {(e^(-(x-2)^2)-sin(deg(x-2)) + cos(1.69*deg(x-2)) + 1)/4.0};
+            \draw[presentblue, ->, >=stealth] (axis cs:-2.5,1.4)--(0,1.4);
+            \node[presentblue] at (axis cs:-1.25,1.2) {\footnotesize$\mu_B$};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{Optimizers}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=\linewidth, 
+                grid=both,
+                grid style={line width=.3pt, draw=presentblue!10},
+                major grid style={line width=.3pt, draw=presentblue!10},
+                minor tick num=3,
+                xlabel={$epoch$},
+                ylabel={$J$}, 
+                axis x line=center,
+                axis y line=center,
+                ticks=none,
+                xmin=0,
+                xmax=5,
+                ymin=0.0,
+                ymax=1.5,
+            ]
+            \addplot [presentred, mark=none, thick, smooth,samples=100, domain=0:5] {(e^(-3*x)) + 0.2};
+            \addplot [presentblue, mark=none, thick, smooth,samples=100, domain=0:5] {(e^(-x)) + 0.01};
+            \addplot [hgfmatter, mark=none, thick, smooth,samples=100, domain=0:5] {(e^(-0.2*x)) + 0.01};
+            \addplot [hgfee, mark=none, thick, smooth] {0.1*x+1.0};
+            
+            \node[presentred] at (axis cs:3.1,0.24) {\footnotesize high};
+            \node[presentblue] at (axis cs:3.1,0.12) {\footnotesize optimal};
+            \node[hgfmatter] at (axis cs:3.1,0.7) {\footnotesize too low};
+            \node[hgfee] at (axis cs:3.1,1.1) {\footnotesize too high};
+            \end{axis} 
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Learning rate strongly impacts training
+            \item Value for $lr$
+            \begin{itemize}
+                \item high: jumpy, no convergence
+                \item low: slow training, local minima
+            \end{itemize}
+            \item Earlier approach 
+            \begin{itemize}
+                \item stop training every $e$ epochs
+                \item lower $lr$
+                \item continue training
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optimizers}
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+    \begin{itemize}
+        \item Various flavors of SGD
+        \item Include \textbf{gradient momentum}
+        \begin{itemize}
+            \item Accelerate previous gradient
+            \item $J_{t+1}^{*}(w)=\alpha J_{t}^{*}(w) - lr\nabla J_t(w)$
+        \end{itemize}
+        \item \textbf{Adaptive learning rate}
+        \begin{itemize}
+            \item Implemented in \textbf{Adagrad}
+            \item Learning rate $lr_i$ for each weight $w_i$
+            \item $w_{i+1}=w_i \frac{lr_{t,i}}{\sqrt{\sum_{i=1}^{\infty} \nabla_{w_i}J_{t-i}(w_i)^2}}\nabla_{w_i} J_t(w_i)$
+        \end{itemize}
+    \end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optimizers}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \includegraphics[width=\linewidth]{optimizers.png}
+            \imageright{Machine Learning Mastery}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Some non-SGD alternatives
+            \begin{itemize}
+                \item Particle-swarm optimization (PSO)
+                \item BFGS
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{Hyperparameter Optimization}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item \textbf{Hyperparameters are all non-weight parameters}
+            \begin{itemize}
+                \item Optimization algorithm
+                \item Learning rate
+                \item Regularization
+                \item Network layer count
+                \item Network neurons
+                \item $\dots$
+            \end{itemize}
+            \item Some can be inferred through thought
+            \item \textbf{Rest: trial and error}
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hyperparameter Optimization}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Naïve approaches
+            \begin{itemize}
+                \item Grid search
+                \item \textbf{Random search}
+            \end{itemize}
+            \item \textbf{Search} algorithms
+            \begin{itemize}
+                \item Kriging-based (hyperopt, Vizier)
+                \item Particle-swarm optimization
+                \item Genetic algorithms
+            \end{itemize}
+            \item \textbf{Meta-learning:} use NN to find NN
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \subsection{Network Architectures}
@@ -1979,7 +2185,7 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
             xticklabels={ILSVRC10, ILSVRC11, AlexNet, ILSVRC12, VGG, Inception, ResNet},
             x tick label style={font=\tiny}
         ]
-        \addplot+[hgfblue, mark=none, very thick, label=barplot] coordinates {
+        \addplot+[presentblue, mark=none, very thick, label=barplot] coordinates {
             (0, 0.282)
             (1, 0.258)
             (2, 0.164)
@@ -2207,6 +2413,29 @@ model = Model(inputs=[data], outputs=[predict])
 
 \begin{frame}
 \frametitle{Abalone Dataset}
+
+\begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Collected by the University of Tasmania, Australia
+            \item \textbf{Abalones are ``sea snails''}
+            \item 4177 instances, each 9 features
+            \item Prediction task
+            \begin{itemize}
+                \item Regress age ($rings + 1.5$) of abalone
+                \item Requires manual preprocessing
+                \item Reduce microscopy cost and labor
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\linewidth]{abalone2.jpg}
+            \imageright{UCI Machine Learning Repository}
+        \end{figure}
+    \end{column}
+\end{columns}
 \end{frame}
 
 \subsection{Exercise: Abalone}
