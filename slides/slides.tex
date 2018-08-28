@@ -1841,7 +1841,15 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
     \end{column}
     \begin{column}{0.48\textwidth}
         \begin{itemize}
-            \item Filter
+            \item Easy for humans, hard for machines
+            \item High input dimensionality $\mathbb{R}/\mathbb{N}^{10^1-10^8}$
+            \item Have to deal with POV-shifts, light variation, occlusion, shape variation
+            \item Classical computer vision answer:
+            \begin{itemize}
+                \item Inclusion of context information
+                \item Usage of image filters
+            \end{itemize}
+            \item \textbf{Idea:} combine with machine learning
         \end{itemize}
     \end{column}
 \end{columns}
