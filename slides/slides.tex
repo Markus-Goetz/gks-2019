@@ -96,32 +96,8 @@
 \section{Machine Learning Fundamentals}
 \label{sec:machine-learning}
 
-\subsection{Terminology}
+\subsection{AI and Machine Learning}
 \label{subsec:terminology}
-
-\begin{frame}
-\frametitle{Terminology}
-\begin{columns}
-    \begin{column}{0.48\textwidth}
-        \begin{itemize}
-            \item \textbf{Samples} or instances,\\ 
-            individual observations in your data,\\
-            e.g. an image, a specimen
-            \item \textbf{Features} or attributes,\\ 
-            single characteristic of a sample,\\
-             e.g. a pixel, measured weight
-            \item \textbf{Channels} or time,\\
-            depth information,\\
-            color channels, change over time
-        \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-        \begin{figure}
-            \includegraphics{terminology.png}
-        \end{figure}
-    \end{column}
-\end{columns}
-\end{frame}
 
 \begin{frame}
     \frametitle{Terminology}
@@ -137,6 +113,30 @@
             \draw (-2.7, 0) ellipse (3.3 and 1.9) (-2.7, 0.0) node[align=left] {\textbf{Deep Learning}\\ e.g. Convolutional\\ Neural Networks};
         \end{tikzpicture}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Terminology}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+    \begin{itemize}
+        \item \textbf{Samples} or instances,\\ 
+        individual observations in your data,\\
+        e.g. an image, a specimen
+        \item \textbf{Features} or attributes,\\ 
+        single characteristic of a sample,\\
+        e.g. a pixel, measured weight
+        \item \textbf{Channels} or time,\\
+        depth information,\\
+        color channels, change over time
+    \end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+    \begin{figure}
+        \includegraphics{terminology.png}
+    \end{figure}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -263,7 +263,7 @@
 \begin{itemize}
     \item Iterative optimization technique, weight update in direction of negative gradient
 \end{itemize}
-\begin{center}$w_{i+1}=w_{i}-lr\nabla_{w_{i}}J(w)$\end{center}
+\begin{center}$w_{i+1}=w_{i}-lr\nabla_{w_{i}}J(w_i)$\end{center}
 \vspace{-0.7cm}
 \begin{columns}
     \begin{column}{0.48\textwidth}
@@ -421,22 +421,6 @@ x_{i,n}\\
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Exercise 1: Warm-up}
-
-\begin{figure}
-    \centering
-    \begin{tikzpicture}[]
-    \node [inner sep=0pt,above right] { %
-        \includegraphics[width=0.5\linewidth]{jupyter.png} %
-    };
-    % show origin
-    \draw [line width=0.6mm, presentred] (7.05, 4.05) ellipse (0.5 and 0.25);
-    \end{tikzpicture}
-\end{figure}
-
-\end{frame}
-
 \subsection{Logistic Regression}
 \label{subsec:logistic-regression}
 
@@ -571,7 +555,7 @@ x_{i,n}\\
     \end{column}
     \begin{column}{0.48\textwidth}
         \begin{itemize}
-            \item Squash linear regression output in fixed interval, e.g. $y\in[0,1]$
+            \item Squash linear regression output into fixed interval, e.g. $y\in[0,1]$
             \item Interpretation: \textbf{probability} of sample belonging to a binary class
             \item \textbf{sigmoid-/logistic} function: $sig(z)=\frac{1}{1+e^{-x}}$
             \item \textbf{Model:} $h=sig(wx)=\frac{1}{1+e^{-wx}}$
@@ -592,7 +576,7 @@ x_{i,n}\\
                 \item \tikz{\node[fill=presentblue, isosceles triangle,isosceles triangle stretches,shape border rotate=90,minimum width=0.2cm,minimum height=0.2cm,inner sep=0pt] at (0,0) {};} $\rightarrow 1$
             \end{itemize}
             \item \textbf{Model:} $h=sig(wx)=\frac{1}{1+e^{-wx}}$
-            \item \textbf{Loss function:} $J(w)=MSE(w)=(y-\hat{y})^2$\\
+            \item \textbf{Loss function:} $J(w)=MSE(w)=\frac{1}{n}\sum_{i=1}^{n}(y-\hat{y})^2$\\
             \medskip
             $\frac{dJ}{dw}=(\hat{y}-y)*(\hat{y}-\hat{y}^2)*x$
             \item \textbf{Train:} gradient descent optimization
@@ -703,7 +687,7 @@ x_{i,n}\\
             \item Multiple supported devices\\
             \textbf{CPU, GPU}, TPU, smartphone
             \item TensorFlow (Google), MXNet (Amazon), PyTorch (Facebook)
-            \item \textbf{Keras}---neural network wrapper\\
+            \item \textbf{Keras}---neural network wrapper for\\
             TensorFlow and MXNet backends
         \end{itemize}
     \end{column}
@@ -761,6 +745,22 @@ model.fit(x, y, epochs=10)
 \label{subsec:exercise-logistic-regression}
 
 \begin{frame}
+\frametitle{Exercise 1: Warm-up}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[]
+    \node [inner sep=0pt,above right] { %
+        \includegraphics[width=0.5\linewidth]{jupyter.png} %
+    };
+    % show origin
+    \draw [line width=0.6mm, presentred] (7.05, 4.05) ellipse (0.5 and 0.25);
+    \end{tikzpicture}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
 \frametitle{Exercise: Logistic Regression}
 
 \begin{columns}
@@ -775,7 +775,8 @@ model.fit(x, y, epochs=10)
             \item \textbf{Loss function:} $J(w)=MSE(w)=(y-\hat{y})^2$\\
             \medskip
             $\frac{dJ}{dw}=(\hat{y}-y)*(\hat{y}-\hat{y}^2)*x$
-            \item \textbf{Train:} $w_{i+1}=w_{i}-lr\frac{dJ}{dw}$
+            \item \textbf{Train:} $w_{i+1}=w_{i}-lr\frac{dJ}{dw_i}$
+            \item \href{https://jupyter-jsc.fz-juelich.de/}{https://jupyter-jsc.fz-juelich.de/}
         \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
@@ -1832,8 +1833,16 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 \begin{columns}
     \begin{column}{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{cat.jpg}
+            \imageright{Catster}
+        \end{figure}
     \end{column}
     \begin{column}{0.48\textwidth}
+        \begin{itemize}
+            \item Filter
+        \end{itemize}
     \end{column}
 \end{columns}
 \end{frame}
@@ -1842,15 +1851,23 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \frametitle{Discrete Convolution}
 
 \begin{columns}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.58\textwidth}
+        \begin{itemize}
+            \item Element-wise weighted sum of input and filter
+            \item $(f*g)[n]=\sum_{m=-\infty}^{\infty}f[m]g[n-m]$
+            \item \textbf{Stride:} pixel distance for slide
+            \item \textbf{Filter size:} window size of convolution kernel
+            \item 2D input: volume of $width\times height(\times channels)$
+            \item Models effects on images, e.g. edge detection
+            \item In CNN: model ``eye'', sparse weight sharing
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.38\textwidth}
         \begin{figure}
             \centering
+            \includegraphics[height=0.38\textheight]{lena.jpg}\\
+            \includegraphics[height=0.38\textheight]{sobel.png}
         \end{figure}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-        \begin{itemize}
-            \item a
-        \end{itemize}
     \end{column}
 \end{columns}
 \end{frame}
@@ -2124,7 +2141,7 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
     \end{column}
     \begin{column}{0.48\textwidth}
         \begin{itemize}
-            \item \textbf{RMSprop:} enhanced Adadelta
+            \item \textbf{RMSprop:} enhanced Adagrad
             \begin{itemize}
                 \item Learning rate got infinitely small
                 \item Forgetting factor $\beta$ for past gradients
@@ -2143,25 +2160,19 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \begin{frame}
 \frametitle{Hyperparameter Optimization}
 
-\begin{columns}
-    \begin{column}{0.48\textwidth}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-        \begin{itemize}
-            \item \textbf{Hyperparameters are all non-weight parameters}
-            \begin{itemize}
-                \item Optimization algorithm
-                \item Learning rate
-                \item Regularization
-                \item Network layer count
-                \item Network neurons
-                \item $\dots$
-            \end{itemize}
-            \item Some can be inferred through thought
-            \item \textbf{Rest: trial and error}
-        \end{itemize}
-    \end{column}
-\end{columns}
+\begin{itemize}
+    \item \textbf{Hyperparameters are all non-weight parameters}
+    \begin{itemize}
+        \item Optimization algorithm
+        \item Learning rate
+        \item Regularization
+        \item Network layer count
+        \item Network neurons
+        \item $\dots$
+    \end{itemize}
+    \item Some can be inferred through thought
+    \item \textbf{Rest: trial and error}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -2297,7 +2308,7 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
             bar width=5mm,
             ymajorgrids=true,
             xtick={0, 1, 2, 3, 4, 5, 6},
-            xticklabels={ILSVRC10, ILSVRC11, AlexNet, ILSVRC12, VGG, Inception, ResNet},
+            xticklabels={ILSVRC10, ILSVRC11, AlexNet, ILSVRC13, VGG, Inception, ResNet},
             x tick label style={font=\tiny}
         ]
         \addplot+[presentblue, mark=none, very thick, label=barplot] coordinates {
