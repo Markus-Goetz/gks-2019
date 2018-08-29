@@ -116,6 +116,26 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{Why now?}
+    \begin{itemize}
+        \item \textbf{Technology revolution}---vector processors (e.g. GPGPUs), auto-gradient software
+        \item \textbf{Data availability}---large, partially freely available, collections of labeled data
+        \item \textbf{Mathematical advances}---latest addition, investigation of new model elements, e.g. activation functions, normalization
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Learning Approaches}
+    \begin{itemize}
+        \item \textbf{Supervised learning:} Learn by ``mimicking supervisor'', i.e. pattern annotations\\ 
+        examples: image classification, stock forecasting
+        \item \textbf{Unsupervised learning:} Determine patterns purely based on data\\ examples: customer cluster analysis, distribution estimation
+        \item \textbf{Reinforcement learning:} Pavlov-style learning with punishment and reward in dynamic environments\\
+        examples: game AIs, e.g. AlphaGo or Dota OpenAI
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{Terminology}
 \begin{columns}
 \begin{column}{0.48\textwidth}
@@ -137,26 +157,6 @@
     \end{figure}
 \end{column}
 \end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Why now?}
-    \begin{itemize}
-        \item \textbf{Technology revolution}---vector processors (e.g. GPGPUs), auto-gradient software
-        \item \textbf{Data availability}---large, partially freely available, collections of labeled data
-        \item \textbf{Mathematical advances}---latest addition, investigation of new model elements, e.g. activation functions, normalization
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Learning Approaches}
-    \begin{itemize}
-        \item \textbf{Supervised learning:} Learn by ``mimicking supervisor'', i.e. pattern annotations\\ 
-        examples: image classification, stock forecasting
-        \item \textbf{Unsupervised learning:} Determine patterns purely based on data\\ examples: customer cluster analysis, distribution estimation
-        \item \textbf{Reinforcement learning:} Pavlov-style learning with punishment and reward in dynamic environments\\
-        examples: game AIs, e.g. AlphaGo or Dota OpenAI
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -591,81 +591,53 @@ x_{i,n}\\
                 grid style={line width=.3pt, draw=presentblue!10},
                 major grid style={line width=.3pt, draw=presentblue!10},
                 minor tick num=3,
-                xlabel={$x_1$},
-                ylabel={$x_2$}, 
+                xlabel={$wx$},
+                ylabel={$\hat{y}$}, 
                 ticks=none,
                 axis x line=center,
                 axis y line=center,
-                xmin=-0.1,
-                xmax=2.0,
+                xmin=-5.0,
+                xmax=5.0,
                 ymin=-0.1,
-                ymax=2.0
+                ymax=1.2
             ]
             \addplot [presentblue, only marks, mark size=2pt, mark=triangle*] coordinates {
-                (0.3405210822112612, 0.8733467370280228)
-                (0.6417180817230281, 0.4966306166288442)
-                (0.31236861944953176, 0.6121119482760103)
-                (0.4843845705001969, 0.8372723451578254)
-                (0.6705319198897809, 0.46544265493212356)
-                (0.15159623290041857, 0.44576239992026545)
-                (0.9463452893119627, 0.33010610736211987)
-                (0.19348743132666624, 0.22660283230073164)
-                (0.2961562717918107, 0.20157698331379592)
-                (0.38534371092248065, 0.9381135102799997)
-                (0.0750871559631675, 0.7932733927855736)
-                (0.14786222142469718, 0.9437344260840296)
-                (0.5936565086474459, 0.22034859139209484)
-                (0.22907523223663817, 0.7878697366360873)
-                (0.794139162809545, 0.048334139863450254)
-                (0.2481683008839609, 0.5986112990477678)
-                (0.28024639511041294, 0.35123819610592255)
-                (0.7426502500585584, 0.06302390692215687)
-                (0.4465644429635456, 0.29914396434886015)
-                (0.7829307093180131, 0.8078686578775368)
-                (0.38036767570222685, 0.8771510877252888)
-                (0.5630903124576907, 0.2542147707582497)
-                (0.8338634277199973, 0.6550543205600249)
-                (0.8759184599366046, 0.6349455271372683)
-                (0.6869371856928128, 0.46250259195124)
-                (0.4212924892722074, 0.8777507521988864)
-                (0.874384938038331, 0.4834185999120415)
-                (0.2045721844969517, 0.0834946363978849)
-                (0.41302308334280347, 0.30372338532728305)
-                (0.7456467692023212, 0.5026216907475388)
+                (1.6611027206330746, 0.8403859746482719)
+                (1.7284679911037832, 0.8492163546084681)
+                (1.980447929430528, 0.8787289035454036)
+                (1.354218630150888, 0.7948184668511403)
+                (1.6057278678332159, 0.8328174119222866)
+                (1.1740038141330658, 0.7638679613026638)
+                (1.5654305489944456, 0.8271312208936279)
+                (1.0406374778006744, 0.7389729891261709)
+                (1.2175306663046495, 0.7716287006468228)
+                (1.15212482162792, 0.7598988102612867)
+                (1.222433948485342, 0.7724915954912219)
+                (1.3168137689858914, 0.7886511122722238)
+                (1.5356204800918496, 0.822827169753855)
+                (1.5691829504301005, 0.8276671001940339)
+                (1.7567986844605772, 0.8528082645120062)
             };
             \addplot [presentred, only marks, mark size=2pt, mark=square*] coordinates {
-                (1.7706837759950487, 1.808884456339976)
-                (1.6097673166601565, 1.0910700963071096)
-                (1.8311427531366666, 1.043397970524071)
-                (1.7686274677101825, 1.7929387383883477)
-                (1.8476473528536392, 1.3287310154974328)
-                (1.51561309479197, 1.7071106254688428)
-                (1.4441136349948995, 1.3151875726875542)
-                (1.6320240433560618, 1.8106133358232555)
-                (1.93615150297599, 1.9318761344130344)
-                (1.6957150249499564, 1.7353082711966865)
-                (1.3832499009666868, 1.6706984272443974)
-                (1.5390778241411607, 1.3212483573991296)
-                (1.5067423770579214, 1.951642819491536)
-                (1.5162449533753577, 1.1744133372978611)
-                (1.452290644909902, 1.1628763191277276)
-                (1.215300195996602, 1.0190784373594854)
-                (1.832559930658315, 1.8667682767915506)
-                (1.7174600650559508, 1.0548065370692519)
-                (1.2178766103535255, 1.7877897361036623)
-                (1.5675863098843703, 1.946616980060258)
-                (1.9539865940177632, 1.415630588037017)
-                (1.0386711055996827, 1.28647932022736)
-                (1.4994662399845793, 1.9459071761746531)
-                (1.057157101434958, 1.8380166331031762)
-                (1.7853872352436764, 1.3426683001589166)
-                (1.75459402308149, 1.1746356610150874)
-                (1.534515821721585, 1.990233613715762)
-                (1.8364540007603098, 1.863869583052054)
-                (1.2251698093011876, 1.8446796325215797)
-                (1.1756480589317504, 1.9193842816924964)
+                (-1.0196347184444567, 0.2650985590592027)
+                (-1.0022522286115616, 0.26849883685519904)
+                (-1.1557365565390303, 0.23944283798422109)
+                (-1.3974671254713573, 0.1982183480307425)
+                (-1.1606958459299377, 0.2385408693182452)
+                (-1.715658735359114, 0.15243119145146328)
+                (-1.8951996922132972, 0.13065273979168898)
+                (-1.7293798235626427, 0.15066692430088222)
+                (-1.2251200041104404, 0.2270366802689441)
+                (-1.2937274869746527, 0.21522256323939018)
+                (-1.3545206550890927, 0.2051322826820219)
+                (-1.8193666281874563, 0.13950988991290472)
+                (-1.1391575506830613, 0.2424750692801325)
+                (-1.9905389939009734, 0.12019985119782262)
+                (-1.0480273799098105, 0.2596040778945661)
+                
             };
-            \addplot [black, mark=none, domain=0:1.6] {-1.5*x+2.4};
+        
+            \addplot [black, mark=none, smooth, samples=50] {1/(1 + e^-x)};
             \end{axis}
             \end{tikzpicture}
         \end{figure}
@@ -1545,6 +1517,21 @@ Multi-class classification recipe:
         \end{figure}
     \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Over- and Underfitting}
+
+\begin{itemize}
+    \item How do we know a network is not over- or underfitting?
+    \item \textbf{Idea:} simulate ``unseen'' data
+    \item Split data artificially into disjoint subsets
+    \begin{itemize}
+        \item \textbf{Training set} for training the model (usually $60\%-80\%$)
+        \item \textbf{Validation set} for fine tunine the model (usually $20\%$)
+        \item \textbf{Test set} to test validation (usually $20\%-40\%$)
+    \end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
