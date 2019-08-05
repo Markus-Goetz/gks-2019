@@ -78,10 +78,10 @@
 }
 
 \title{Machine Learning with Neural Networks}
-\subtitle{GridKa School 2018}
-\author{Markus Götz}
-\date{2018-08-29}
-\institute{KIT}
+\subtitle{GridKa School 2019 -- The Art of Data}
+\author{Dr. Markus Götz}
+\date{2018-08-28}
+\institute{KIT-SCC}
 
 \begin{document}
 
@@ -239,7 +239,7 @@
             \begin{itemize}
                 \item<1-> \textbf{Data set:} $\{samples, labels\}=\{x, y\}$
                 \item<2-> \textbf{Model:} definition $\hat{y}=wx+b$\\ with $w$ and $b$ trainable parameters
-                \item<3-> \textbf{Loss function:} or cost/objective\\
+                \item<3-> \textbf{Loss function:} or cost/error/objective\\
                 $J(w,b)=MSE(w,b)=\frac{1}{N}\sum_{i=1}^{N}(y_i-\hat{y_i})^2$
                 \item<4-> \textbf{Train:} the model, e.g. optimization\\
                 $\hat{w}, \hat{b}=\argmin J(w, b)$ \\
@@ -717,7 +717,7 @@ model.fit(x, y, epochs=10)
 
 \begin{frame}
 \frametitle{Exercise 1: Warm-up}
-
+% TODO: change picture
 \begin{figure}
     \centering
     \begin{tikzpicture}[]
@@ -747,7 +747,7 @@ model.fit(x, y, epochs=10)
             \medskip
             $\frac{dJ}{dw}=(\hat{y}-y)*(\hat{y}-\hat{y}^2)*x$
             \item \textbf{Train:} $w_{i+1}=w_{i}-lr\frac{dJ}{dw_i}$
-            \item \href{https://jupyter-jsc.fz-juelich.de/}{https://jupyter-jsc.fz-juelich.de/}
+            \item \href{https://jupyter-jsc.fz-juelich.de/}{https://jupyter-jsc.fz-juelich.de/} % TODO: change URL
         \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
@@ -978,7 +978,7 @@ model.fit(x, y, epochs=10)
         \begin{onlyenv}<1->
         \textbf{OR-gate}\\
         \medskip
-        $h_1=sig(2x_1 + 2x_2 + 1)$
+        $h_1=x_1 + x_2 - 1$
     \end{onlyenv}
     \end{column}
     \begin{column}{0.32\textwidth}
@@ -986,7 +986,7 @@ model.fit(x, y, epochs=10)
         \begin{onlyenv}<2->
         \textbf{NAND-gate}\\
         \medskip
-        $h_2=sig(-2x_1 -2x_2 - 1.5)$
+        $h_2=-x_1 -x_2 - 1.5$
     \end{onlyenv}
     \end{column}
     \begin{column}{0.32\textwidth}
@@ -994,7 +994,7 @@ model.fit(x, y, epochs=10)
         \begin{onlyenv}<3->
         \textbf{AND-gate}\\
         \medskip
-        $\hat{y}=sig(2h_1 +2h_2 + 3)$
+        $\hat{y}=h_1 + h_2 - 1.5$
         \end{onlyenv}
     \end{column}
 \end{columns}
@@ -2611,7 +2611,7 @@ model = Model(inputs=[data], outputs=[predict])
 \begin{columns}
     \begin{column}{0.48\textwidth}
         \begin{itemize}
-            \item \textbf{Eileen Kühn}
+            \item \textbf{René Caspart}
             \begin{itemize}
                 \item GridKa School organization
                 \item Paperwork
@@ -2621,19 +2621,19 @@ model = Model(inputs=[data], outputs=[predict])
                 \item Assignment preparation
                 \item Exercise supervision
             \end{itemize}
-            \item \textbf{Andreas Herten}
+            \item \textbf{Samuel Braun}
             \begin{itemize}
-                \item Access to JURON
-                \item Technical support
+                \item Access to FH2
+                \item Jupyter support
             \end{itemize}
         \end{itemize}
     \end{column}
 
     \begin{column}{0.48\textwidth}
         \begin{figure}
-            \includegraphics[width=0.25\linewidth]{eileen.jpg}\quad \includegraphics[width=0.25\linewidth]{oskar.jpg} \\\medskip
+            \includegraphics[width=0.25\linewidth]{rene.jpg}\quad \includegraphics[width=0.25\linewidth]{oskar.jpg} \\\medskip
             
-            \includegraphics[width=0.25\linewidth]{andreas.jpg}\quad \includegraphics[width=0.25\linewidth]{juron.jpg} \\
+            \includegraphics[width=0.25\linewidth]{samuel.png}\quad \includegraphics[width=0.25\linewidth]{fh2.jpg} \\
         \end{figure}
     \end{column}
 \end{columns}
