@@ -80,7 +80,7 @@
 \title{Machine Learning with Neural Networks}
 \subtitle{GridKa School 2019 -- The Art of Data}
 \author{Dr. Markus Götz}
-\date{2018-08-28}
+\date{2019-08-28}
 \institute{KIT-SCC}
 
 \begin{document}
@@ -367,7 +367,7 @@
                 (0.93, 0.43)
             };
             \draw [->, presentred](axis cs:0.57,1.07)--(axis cs:0.98,0.48);
-            \node at (axis cs:1.20,0.8) [presentblue] {$lr\frac{dJ}{dw}$};
+            \node at (axis cs:1.30,0.8) [presentblue] {$lr\nabla_{w}J(w)$};
             \node at (axis cs:0.7,0.1) [presentred] {\footnotesize$w_{1}$};
             \node at (axis cs:1.2,0.1) [presentred] {\footnotesize$w_{2}$};
             \node at (axis cs:1.7,0.1) [presentred] {\footnotesize$w_{s}$};
@@ -386,17 +386,17 @@
 \frametitle{Bias Trick}
 
 \begin{itemize}
-\item Cumbersome to keep track of weights $w$ and bias $b$
+\item Cumbersome to keep track of weights $w$ and bias $b$ simultaneously
 \item \textbf{Idea:} fuse both into single weight matrix
 
 \begin{alignat*}{11}
-\hat{y}&=&w&x&+b&\leftrightarrow&\hat{y}&=&w&x \\
+\hat{y}&=&w&x&+b&\leftrightarrow&\hat{y}&=&w^{*}&x \\
 \hat{y}&=&\begin{pmatrix}
 w_{1} \\
 w_{2} \\
 \vdots \\
 w_{n}
-\end{pmatrix}'&
+\end{pmatrix}^{T}&
 \begin{pmatrix}
 x_{i,1}\\
 x_{i,2}\\
@@ -405,11 +405,11 @@ x_{i,n}\\
 \end{pmatrix}&+b&\leftrightarrow&\hat{y}&=&
 \begin{pmatrix}
 \textbf{b} \\
-w_{1} \\
-w_{2} \\
+w^{*}_{1} \\
+w^{*}_{2} \\
 \vdots \\
-w_{n}
-\end{pmatrix}'&
+w^{*}_{n}
+\end{pmatrix}^{T}&
 \begin{pmatrix}
 \textbf{1}\\
 x_{i,1}\\
@@ -578,7 +578,7 @@ x_{i,n}\\
             \item \textbf{Model:} $h=sig(wx)=\frac{1}{1+e^{-wx}}$
             \item \textbf{Loss function:} $J(w)=MSE(w)=\frac{1}{n}\sum_{i=1}^{n}(y-\hat{y})^2$\\
             \medskip
-            $\frac{dJ}{dw}=(\hat{y}-y)*(\hat{y}-\hat{y}^2)*x$
+            $\nabla_{w}J(w)=(\hat{y}-y)*y^2*e^{-wx}*x$
             \item \textbf{Train:} gradient descent optimization
         \end{itemize}
     \end{column}
@@ -716,7 +716,7 @@ model.fit(x, y, epochs=10)
 \label{subsec:exercise-logistic-regression}
 
 \begin{frame}
-\frametitle{Exercise 1: Warm-up}
+\frametitle{Exercise 0: Warm-up}
 
 \begin{itemize}
     \item Compute on \textbf{FH2 GPU} resources
@@ -731,7 +731,7 @@ model.fit(x, y, epochs=10)
 \end{frame}
 
 \begin{frame}
-\frametitle{Exercise 2: Logistic Regression}
+\frametitle{Exercise 1: Logistic Regression}
 
 \begin{columns}
     \begin{column}{0.48\textwidth}
@@ -744,8 +744,8 @@ model.fit(x, y, epochs=10)
             \item \textbf{Model:} $h=sig(wx)=\frac{1}{1+e^{-wx}}$
             \item \textbf{Loss function:} $J(w)=MSE(w)=(y-\hat{y})^2$\\
             \medskip
-            $\frac{dJ}{dw}=(\hat{y}-y)*(\hat{y}-\hat{y}^2)*x$
-            \item \textbf{Train:} $w_{i+1}=w_{i}-lr\frac{dJ}{dw_i}$
+            $\nabla_{w}J(w)=(\hat{y}-y)*y^2*e^{-wx}*x$
+            \item \textbf{Train:} $w_{i+1}=w_{i}-lr\nabla_{w}J(w)$
             \item \href{https://gks-ml.scc.kit.edu/}{https://gks-ml.scc.kit.edu/}
         \end{itemize}
     \end{column}
@@ -926,6 +926,7 @@ model.fit(x, y, epochs=10)
                 grid style={line width=.3pt, draw=presentblue!10},
                 major grid style={line width=.3pt, draw=presentblue!10},
                 xlabel={$x_1$},
+                ylabel={$x_2$},
                 yticklabels={,,},
                 xmin=-0.2,
                 xmax=1.2,
@@ -952,7 +953,8 @@ model.fit(x, y, epochs=10)
                 grid=major,
                 grid style={line width=.3pt, draw=presentblue!10},
                 major grid style={line width=.3pt, draw=presentblue!10},
-                xlabel={$x_1$},
+                xlabel={$\mathbf{h_1}$},
+                ylabel={$\mathbf{h_2}$},
                 yticklabels={,,},
                 xmin=-0.2,
                 xmax=1.2,
@@ -993,7 +995,7 @@ model.fit(x, y, epochs=10)
         \begin{onlyenv}<3->
         \textbf{AND-gate}\\
         \medskip
-        $\hat{y}=h_1 + h_2 - 1.5$
+        $\hat{y}=\mathbf{h_1} + \mathbf{h_2} - 1.5$
         \end{onlyenv}
     \end{column}
 \end{columns}
@@ -1063,7 +1065,7 @@ model.fit(x, y, epochs=10)
             \item \textbf{Hidden layer} are nested functions
             \begin{itemize}
                 \item Requires \textbf{chain rule} for gradient
-                \item $h'(x)=f'(g(x))*g(x)$
+                \item $h'(x)=f'(g(x))*g'(x)$
                 \item \textbf{Neurons store forward result}
             \end{itemize}
             \item Weight initialization in network\\
@@ -1613,7 +1615,7 @@ Methods to avoid overfitting, reduced validation error, might increase train err
 \begin{columns}
     \begin{column}{0.48\textwidth}
         \begin{itemize}
-            \item \textbf{L1-Norm}, also \textbf{LASSO}
+            \item \textbf{L1-Norm}
             \begin{itemize}
                 \item $\lVert w\rVert_1=(w_1+w_2+\dots +w_f)$
                 \item All weights contribute to loss
@@ -1685,8 +1687,9 @@ Methods to avoid overfitting, reduced validation error, might increase train err
 \frametitle{Dropout}
 
 \begin{itemize}
-    \item Randomly turn of neurons and connection, e.g. $p(drop)=0.5$
+    \item Randomly turn of neurons and connection, e.g. $p(drop)=0.3$
     \item Equivalent to network regularization (proof omitted)
+    \item Implementation: set passed input to zero
 \end{itemize}
 
 \begin{columns}
@@ -1788,6 +1791,8 @@ model.add(Dense(classes, activation='softmax'))
 
 # Model compilation
 model.compile(loss="categorical_crossentropy", optimizer="sgd")
+# Fitting
+model.fit(x, y, batch_size=2, epochs=10)
 \end{lstlisting}
 
 \end{frame}
@@ -1796,7 +1801,7 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \label{subsec:exercise-fnn}
 
 \begin{frame}
-    \frametitle{Exercise 3: FNN MNIST Image Classification}
+    \frametitle{Exercise 2: FNN MNIST Image Classification}
     
     \begin{figure}
         \centering
@@ -1847,9 +1852,9 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
     \begin{column}{0.58\textwidth}
         \begin{itemize}
             \item Element-wise weighted sum of input and filter
-            \item $(f*g)[n]=\sum_{m=-\infty}^{\infty}f[m]g[n-m]$
+            \item $(f*g)[n]=\sum_{m=-K}^{K}f[m]g[n-m]$
+            \item \textbf{Filter size K:} window size of convolution kernel
             \item \textbf{Stride:} pixel distance for slide
-            \item \textbf{Filter size:} window size of convolution kernel
             \item 2D input: volume of $width\times height(\times channels)$
             \item Models effects on images, e.g. edge detection
             \item In CNN: model ``eye'', sparse weight sharing
@@ -1940,56 +1945,56 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 \end{figure}
 \end{frame}
 
-\begin{frame}
-\frametitle{Batch Normalization}
-
-\begin{columns}
-    \begin{column}{0.48\textwidth}
-        \begin{itemize}
-            \item \textbf{Idea:} standardize layer outputs
-            \item Training time
-            \begin{itemize}
-                \item Calculate batch mean $\mu_B$ and standard deviation $\sigma_B$
-                \item Track rolling values $\mu$ and $\sigma$
-                \item Normalize by $\frac{x-\mu_B}{\sigma_B}$
-            \end{itemize}
-            \item Prediction time
-            \begin{itemize}
-                \item Track $\mu_B$ and $\sigma_B$ for covariate shift
-                \item Add one degree of freedom
-            \end{itemize}
-            \item Regularizes network
-        \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-        \begin{figure}
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\linewidth, 
-                grid=both,
-                grid style={line width=.3pt, draw=presentblue!10},
-                major grid style={line width=.3pt, draw=presentblue!10},
-                minor tick num=3,
-                xlabel={$x$},
-                ylabel={$\hat{y}$}, 
-                axis x line=center,
-                axis y line=center,
-                ticks=none,
-                xmin=-5,
-                xmax=5,
-                ymin=0.0,
-                ymax=6.0,
-            ]
-            \addplot [presentblue, mark=none, thick, smooth, samples=100, domain=-5:1] {e^(-(x+0.5) ^2)-sin(deg(x+0.5)) + cos(1.69*deg(x+0.5)) + 1.5};
-            \addplot [presentblue, dashed, mark=none, thick, smooth, samples=100,domain=-3:4] {(e^(-(x-2)^2)-sin(deg(x-2)) + cos(1.69*deg(x-2)) + 1)/4.0};
-            \draw[presentblue, ->, >=stealth] (axis cs:-2.5,1.4)--(0,1.4);
-            \node[presentblue] at (axis cs:-1.25,1.2) {\footnotesize$\mu_B$};
-            \end{axis} 
-            \end{tikzpicture}
-        \end{figure}
-    \end{column}
-\end{columns}
-\end{frame}
+%\begin{frame}
+%\frametitle{Batch Normalization}
+%
+%\begin{columns}
+%    \begin{column}{0.48\textwidth}
+%        \begin{itemize}
+%            \item \textbf{Idea:} standardize layer outputs
+%            \item Training time
+%            \begin{itemize}
+%                \item Calculate batch mean $\mu_B$ and standard deviation $\sigma_B$
+%                \item Track rolling values $\mu$ and $\sigma$
+%                \item Normalize by $\frac{x-\mu_B}{\sigma_B}$
+%            \end{itemize}
+%            \item Prediction time
+%            \begin{itemize}
+%                \item Track $\mu_B$ and $\sigma_B$ for covariate shift
+%                \item Add one degree of freedom
+%            \end{itemize}
+%            \item Regularizes network
+%        \end{itemize}
+%    \end{column}
+%    \begin{column}{0.48\textwidth}
+%        \begin{figure}
+%            \begin{tikzpicture}
+%            \begin{axis}[
+%                width=\linewidth, 
+%                grid=both,
+%                grid style={line width=.3pt, draw=presentblue!10},
+%                major grid style={line width=.3pt, draw=presentblue!10},
+%                minor tick num=3,
+%                xlabel={$x$},
+%                ylabel={$\hat{y}$}, 
+%                axis x line=center,
+%                axis y line=center,
+%                ticks=none,
+%                xmin=-5,
+%                xmax=5,
+%                ymin=0.0,
+%                ymax=6.0,
+%            ]
+%            \addplot [presentblue, mark=none, thick, smooth, samples=100, domain=-5:1] {e^(-(x+0.5) ^2)-sin(deg(x+0.5)) + cos(1.69*deg(x+0.5)) + 1.5};
+%            \addplot [presentblue, dashed, mark=none, thick, smooth, samples=100,domain=-3:4] {(e^(-(x-2)^2)-sin(deg(x-2)) + cos(1.69*deg(x-2)) + 1)/4.0};
+%            \draw[presentblue, ->, >=stealth] (axis cs:-2.5,1.4)--(0,1.4);
+%            \node[presentblue] at (axis cs:-1.25,1.2) {\footnotesize$\mu_B$};
+%            \end{axis} 
+%            \end{tikzpicture}
+%        \end{figure}
+%    \end{column}
+%\end{columns}
+%\end{frame}
 
 \begin{frame}
 \frametitle{Optimizers}
@@ -2490,36 +2495,38 @@ model.add(Dense(classes, activation='softmax'))
 
 # Model compilation
 model.compile(loss="categorical_crossentropy", optimizer="sgd")
+# Fitting
+model.fit(x, y, batch_size=2, epochs=10)
 \end{lstlisting}
 
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Keras Functional API}
-
-\begin{lstlisting}[language=Python]
-from keras.models import Model
-from keras.layers import Dense, Input
-
-features = 20
-data = Input(shape=(features,))
-
-# layers can be connected by calling the previous layer
-layer_1 = Dense(64)(data)
-layer_2 = Dense(64)(layer_1)
-predict = Dense(10, activation="softmax")(layer_2)
-
-# the model must be created manually
-model = Model(inputs=[data], outputs=[predict])
-\end{lstlisting}
-
-\end{frame}
+%\begin{frame}[fragile]
+%\frametitle{Keras Functional API}
+%
+%\begin{lstlisting}[language=Python]
+%from keras.models import Model
+%from keras.layers import Dense, Input
+%
+%features = 20
+%data = Input(shape=(features,))
+%
+%# layers can be connected by calling the previous layer
+%layer_1 = Dense(64)(data)
+%layer_2 = Dense(64)(layer_1)
+%predict = Dense(10, activation="softmax")(layer_2)
+%
+%# the model must be created manually
+%model = Model(inputs=[data], outputs=[predict])
+%\end{lstlisting}
+%
+%\end{frame}
 
 \subsection{Exercise: MNIST CNN}
 \label{subsec:cnn-exercise}
 
 \begin{frame}
-\frametitle{Exercise 4: CNN MNIST Image Classification}
+\frametitle{Exercise 3: CNN MNIST Image Classification}
 
 \begin{figure}
     \centering
@@ -2527,47 +2534,47 @@ model = Model(inputs=[data], outputs=[predict])
 \end{figure}
 \end{frame}
 
-\section{Regression}
-\label{sec:regression}
-
-\begin{frame}
-\frametitle{Abalone Dataset}
-
-\begin{columns}
-    \begin{column}{0.48\textwidth}
-        \begin{itemize}
-            \item Collected by the University of Tasmania, Australia
-            \item \textbf{Abalones are ``sea snails''}
-            \item 4177 instances, each 9 features
-            \item Prediction task
-            \begin{itemize}
-                \item Regress age ($rings + 1.5$) of abalone
-                \item Requires manual preprocessing
-                \item Reduce microscopy cost and labor
-            \end{itemize}
-        \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.8\linewidth]{abalone2.jpg}
-            \imageright{UCI Machine Learning Repository}
-        \end{figure}
-    \end{column}
-\end{columns}
-\end{frame}
-
-\subsection{Exercise: Abalone}
-\label{subsec:regression-exercise}
-
-\begin{frame}
-    \frametitle{Exercise 5: Abalone Age Regression Analysis}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\linewidth]{abalone.jpg}
-        \imageright{Garnelaxia}
-    \end{figure}
-\end{frame}
+%\section{Regression}
+%\label{sec:regression}
+%
+%\begin{frame}
+%\frametitle{Abalone Dataset}
+%
+%\begin{columns}
+%    \begin{column}{0.48\textwidth}
+%        \begin{itemize}
+%            \item Collected by the University of Tasmania, Australia
+%            \item \textbf{Abalones are ``sea snails''}
+%            \item 4177 instances, each 9 features
+%            \item Prediction task
+%            \begin{itemize}
+%                \item Regress age ($rings + 1.5$) of abalone
+%                \item Requires manual preprocessing
+%                \item Reduce microscopy cost and labor
+%            \end{itemize}
+%        \end{itemize}
+%    \end{column}
+%    \begin{column}{0.48\textwidth}
+%        \begin{figure}
+%            \centering
+%            \includegraphics[width=0.8\linewidth]{abalone2.jpg}
+%            \imageright{UCI Machine Learning Repository}
+%        \end{figure}
+%    \end{column}
+%\end{columns}
+%\end{frame}
+%
+%\subsection{Exercise: Abalone}
+%\label{subsec:regression-exercise}
+%
+%\begin{frame}
+%    \frametitle{Exercise 5: Abalone Age Regression Analysis}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.7\linewidth]{abalone.jpg}
+%        \imageright{Garnelaxia}
+%    \end{figure}
+%\end{frame}
 
 \section{Summary}
 \label{sec:summary}
